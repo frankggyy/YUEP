@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rsps>
+	<rsp step="1" rspClazz="com.yuep.core.client.main.login.processing.rsp.DefaultSettingLookAndFeelRsp"/>
+	<rsp step="2" rspClazz="com.yuep.core.client.main.login.processing.rsp.DefaultLoadWindowManagerRsp"/>
+	<rsp step="3" rspClazz="com.yuep.core.client.main.login.processing.rsp.DefaultOpenLoginViewRsp"/>
+</rsps>

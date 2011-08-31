@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<mapping>
+    <class name="com.yuep.core.client.component.toolbar.interpreter.xmldao.XToolBar">
+        <map-to xml="toolbar" />
+        <field name="toolBarButtons" type="com.yuep.core.client.component.toolbar.interpreter.xmldao.XToolBarButton" collection="collection">
+        </field>
+    </class>
+    
+    <class name="com.yuep.core.client.component.toolbar.interpreter.xmldao.XToolBarButton">
+        <map-to xml="button" />
+         <field name="icon" type="java.lang.String">
+             <bind-xml name="icon" node="attribute" location="button"/>
+         </field>
+         <field name="rolloverIcon" type="java.lang.String">
+             <bind-xml name="rolloverIcon" node="attribute" location="button"/>
+         </field>
+         <field name="toolTip" type="java.lang.String">
+             <bind-xml name="toolTip" node="attribute" location="button"/>
+         </field>
+         <field name="clazz" type="java.lang.String">
+			<bind-xml name="clazz" node="attribute" location="menu-item"/>
+		</field>
+    </class>
+</mapping>

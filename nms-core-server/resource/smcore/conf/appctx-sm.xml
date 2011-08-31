@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+    <bean id="smCoreService" class="com.yuep.nms.core.server.smcore.SmCoreServiceImpl" autowire="byName"/>
+    <bean id="userManager" class="com.yuep.nms.core.server.smcore.auth.UserManager" autowire="byName"/>
+    
+    <bean id="userDao" class="com.yuep.core.db.access.basedao.BaseDao">
+    	<constructor-arg value="com.yuep.nms.core.common.smcore.model.User" />
+    </bean>
+    
+    <bean id="ipRangeDao" class="com.yuep.core.db.access.basedao.BaseDao">
+    	<constructor-arg value="com.yuep.nms.core.common.smcore.model.IpRange" />
+    </bean>
+    
+    <bean id="mgmtScopeManager" class="com.yuep.nms.core.server.smcore.mgmtscope.MgmtScopeManager" autowire="byName"/>
+    
+    <bean id="operationLogDao" class="com.yuep.core.db.access.basedao.BaseDao">
+    	<constructor-arg value="com.yuep.nms.core.common.smcore.model.OperationLog" />
+    </bean>
+    <bean id="roleManagerDao" class="com.yuep.core.db.access.basedao.BaseDao">
+    	<constructor-arg value="com.yuep.nms.core.common.smcore.model.Role" />
+    </bean>
+    <bean id="operationLogRecorder" class="com.yuep.nms.core.server.smcore.oplog.OperationLogRecorder" autowire="byName"/>
+    <bean id="opLogManager" class="com.yuep.nms.core.server.smcore.oplog.OpLogManager" autowire="byName"/>
+    <bean id="roleManager" class="com.yuep.nms.core.server.smcore.role.RoleManager" autowire="byName"/>
+    
+    <bean id="permissionManager" class="com.yuep.nms.core.server.smcore.perm.PermissionManager" autowire="byName"/>
+    <bean id="permissionLoader" class="com.yuep.nms.core.server.smcore.perm.PermissionLoader" autowire="byName"/>
+    
+    <bean id="permGroupDao" class="com.yuep.core.db.access.basedao.BaseDao">
+    	<constructor-arg value="com.yuep.nms.core.common.smcore.model.PermissionGroup" />
+    </bean>
+    <bean id="permGroupManager" class="com.yuep.nms.core.server.smcore.perm.PermGroupManager" autowire="byName"/>
+    
+    <bean id="moPermDao" class="com.yuep.core.db.access.basedao.BaseDao">
+    	<constructor-arg value="com.yuep.nms.core.common.smcore.model.MoPermGroup" />
+    </bean>
+    <bean id="moPermGroupManager" class="com.yuep.nms.core.server.smcore.perm.MoPermGroupManager" autowire="byName"/>
+    
+    <bean id="userCustomDao" class="com.yuep.core.db.access.basedao.BaseDao">
+    	<constructor-arg value="com.yuep.nms.core.common.smcore.model.UserCustom" />
+    </bean>
+    <bean id="userPermissionTree" class="com.yuep.nms.core.server.smcore.perm.UserPermissionTree" autowire="byName"/>
+    <bean id="userCustomProcessor" class="com.yuep.nms.core.server.smcore.auth.UserCustomProcessor" autowire="byName"/>   
+</beans>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapping>
+	<description>device static information</description>
+	
+	<field-handler name="acceptedTypesHandler" class="com.yuep.base.xml.handler.ListStringHandler"/>
+	<field-handler name="acceptedKindsHandler" class="com.yuep.base.xml.handler.ListStringHandler"/>
+	<field-handler name="acceptedSubKindsHandler" class="com.yuep.base.xml.handler.ListStringHandler"/>
+	<class name="com.yuep.base.xml.ArrayListItems">
+		<map-to xml="MoModel" />
+		<field name="items" type="com.yuep.nms.core.common.mocore.model.MoStaticInfo"
+			collection="collection" />
+	</class>
+	<class name="com.yuep.nms.core.common.mocore.model.MoStaticInfo">
+		<map-to xml="Mo" />
+		<field name="type" type="java.lang.String" >
+			<bind-xml name="type" node="attribute" location="Mo" />
+		</field>
+		<field name="kind" type="java.lang.String" >
+			<bind-xml name="kind" node="attribute" location="Mo" />
+		</field>
+		<field name="subkind" type="java.lang.String" >
+			<bind-xml name="subkind" node="attribute" location="Mo" />
+		</field>
+		<field name="subRange" type="java.lang.String" >
+			<bind-xml name="subRange" node="attribute" location="Mo" />
+		</field>
+		
+		<field name="additions" collection="map">
+		    <bind-xml name="Addition">
+                <class name="org.exolab.castor.mapping.MapItem">
+                      <field name="key" type="java.lang.String">
+                          <bind-xml name="key" node="attribute" location="Addition"/>
+                      </field>
+                      <field name="value" type="java.lang.String">
+                           <bind-xml name="value" node="attribute" location="Addition"/>
+                      </field>	  
+                </class>
+            </bind-xml>
+		</field>
+		
+		<field name="subMoInfos" type="com.yuep.nms.core.common.mocore.model.SubMoInfo" collection="collection" />
+	</class>
+	
+	<class name="com.yuep.nms.core.common.mocore.model.SubMoInfo">
+			<map-to xml="SubMo"/>
+			<field name="index" type="java.lang.Integer" >
+				<bind-xml name="index" node="attribute" location="SubMo" />
+			</field>
+
+			<field name="acceptedTypes" type="java.util.ArrayList" handler="acceptedTypesHandler">
+				<bind-xml name="acceptedType" node="attribute" location="SubMo" />
+			</field>
+			
+			<field name="acceptedKinds" type="java.util.ArrayList" handler="acceptedKindsHandler">
+				<bind-xml name="acceptedKind" node="attribute" location="SubMo" />
+			</field>
+			
+			<field name="acceptedSubKinds" type="java.util.ArrayList" handler="acceptedSubKindsHandler">
+				<bind-xml name="acceptedSubKind" node="attribute" location="SubMo" />
+			</field>
+			
+			<field name="fixed" type="java.lang.Boolean" >
+				<bind-xml name="fixed" node="attribute" location="SubMo" />
+			</field>
+			
+			<field name="additions" collection="hashtable">
+			 <bind-xml name="Addition" >
+                  <class name="org.exolab.castor.mapping.MapItem">
+                      <field name="key" type="java.lang.String">
+                          <bind-xml name="key" node="attribute"/>
+                      </field>
+                      <field name="value" type="java.lang.String">
+                           <bind-xml name="value" node="attribute"/>
+                      </field>	  
+                  </class>
+             </bind-xml>
+		</field>
+	</class>
+	
+</mapping>

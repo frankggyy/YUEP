@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+
+<mapping>
+	<description>Client menu mapping</description>
+	
+	<class name="com.yuep.core.client.component.menu.interpreter.xmldao.XMenus">
+		<map-to xml="menus" />
+		<field name="menus" type="com.yuep.core.client.component.menu.interpreter.xmldao.XMenu" collection="collection">
+		</field>
+	</class>
+	
+	<class name="com.yuep.core.client.component.menu.interpreter.xmldao.XMenu">
+		<map-to xml="menu" />
+		<field name="XMenuItems" type="com.yuep.core.client.component.menu.interpreter.xmldao.XMenuItem" collection="collection">
+		</field>
+		<field name="name" type="java.lang.String">
+			<bind-xml name="name" node="attribute" location="menu"/>
+		</field>
+		<field name="text" type="java.lang.String">
+            <bind-xml name="text" node="attribute" location="menu"/>
+        </field>
+		<field name="mnemonic" type="java.lang.Character">
+            <bind-xml name="mnemonic" node="attribute" location="menu"/>
+        </field>
+		<field name="referenceMenu" type="java.lang.String">
+			<bind-xml name="referenceMenu" node="attribute" location="menu"/>
+		</field>
+	</class>
+	
+	<class name="com.yuep.core.client.component.menu.interpreter.xmldao.XMenuItem">
+		<map-to xml="menu-item"/>
+		<field name="XMenuItems" type="com.yuep.core.client.component.menu.interpreter.xmldao.XMenuItem" collection="collection">
+		</field>
+		<field name="referenceMenu" type="java.lang.String">
+			<bind-xml name="referenceMenu" node="attribute" location="menu-item"/>
+		</field>
+		<field name="text" type="java.lang.String">
+			<bind-xml name="text" node="attribute" location="menu-item"/>
+		</field>
+		<field name="icon" type="java.lang.String">
+			<bind-xml name="icon" node="attribute" location="menu-item"/>
+		</field>
+		<field name="mnemonic" type="java.lang.Character">
+			<bind-xml name="mnemonic" node="attribute" location="menu-item"/>
+		</field>
+		<field name="multiple" type="java.lang.Boolean">
+				<bind-xml name="multiple" node="attribute" location="menu-item"/>
+			</field>
+		<field name="paramClass" type="java.lang.String">
+			<bind-xml name="paramClass" node="attribute" location="menu-item"/>
+		</field>
+		<field name="itemType" type="java.lang.String">
+			<bind-xml name="itemType" node="attribute" location="menu-item"/>
+		</field>
+		<field name="buttonGroupName" type="java.lang.String">
+			<bind-xml name="buttonGroupName" node="attribute" location="menu-item"/>
+		</field>
+		<field name="sourceType" type="java.lang.String">
+			<bind-xml name="sourceType" node="attribute" location="menu-item"/>
+		</field>
+		<field name="clazz" type="java.lang.String">
+			<bind-xml name="clazz" node="attribute" location="menu-item"/>
+		</field>
+	</class>
+</mapping>

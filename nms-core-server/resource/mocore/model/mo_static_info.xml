@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<MoModel>
+	<Mo type="nm" kind="nm" subkind="nm">
+		<SubMo acceptedKind="group,domain,ne,nm" />
+    </Mo>
+
+	<Mo type="group" kind="group" subkind="group">
+		<SubMo acceptedKind="ne" />
+	</Mo>
+	<Mo type="domain" kind="domain" subkind="domain">
+		<SubMo acceptedKind="nm,group,domain" />
+	</Mo>
+
+	<Mo type="C8000" subkind ="eponoltne" kind="ne" subRange="1-14">
+	       <SubMo index="1" acceptedType="LPU2,LPU4" fixed="false"/>
+	       <SubMo index="2" acceptedType="LPU2,LPU4" fixed="false"/>
+	       <SubMo index="3" acceptedType="LPU2,LPU4" fixed="false"/>
+	       <SubMo index="4" acceptedType="LPU2,LPU4" fixed="false"/>
+	       <SubMo index="5" acceptedType="LPU2,LPU4" fixed="false"/>
+	       <SubMo index="6" acceptedType="SCU"/>
+	       <Addition key="aaa" value="bbbb" />
+	</Mo>
+	
+	<Mo type="SCU" subkind ="poncard" kind="card" subRange="1-12">
+	       <SubMo index="1" acceptedType="Port_10_100_1000BASE_T"/>
+	       <SubMo index="2" acceptedType="Port_10_100_1000BASE_T"/>
+	</Mo>
+	
+	<Mo type="LPU2" subkind ="poncard" kind="card" subRange="1-12">
+	       <SubMo index="1" acceptedType="Port_1000BASE_PX20_D"/>
+	       <SubMo index="2" acceptedType="Port_1000BASE_PX20_D"/>
+	</Mo>
+	
+	<Mo type="LPU4" subkind ="poncard" kind="card" subRange="1-13">
+	       <SubMo index="1" acceptedType="Port_1000BASE_PX20_D"/>
+	       <SubMo index="2" acceptedType="Port_1000BASE_PX20_D"/>
+	       <SubMo index="3" acceptedType="Port_1000BASE_PX20_D"/>
+	       <SubMo index="4" acceptedType="Port_1000BASE_PX20_D"/>
+	</Mo>
+	
+	<Mo type="Port_1000BASE_PX20_D" subkind ="ponport" kind="port"/>
+	<Mo type="Port_10_100_1000BASE_T" subkind ="ethernetport" kind="port"/>
+</MoModel>

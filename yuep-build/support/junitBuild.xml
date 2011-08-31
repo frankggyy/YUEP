@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="YUEP Unit Test" basedir="." default="all">
+    <property file="${basedir}/junitbuild.properties"/>
+    <target name="env">
+        <property name="runtime.dir" value="${release.dir}/runtime"/>
+        <property name="server.dir" value="${runtime.dir}/server"/>
+        <property name="client.dir" value="${runtime.dir}/client"/>
+        <property name="test.dir" value="${release.dir}/test"/>
+
+        <property name="build.dir" value="${basedir}/junitbuild"/>
+        <property name="src.dir" value="${build.dir}/src"/>
+        <property name="classes.dir" value="${build.dir}/classes"/>
+
+        <path id="cp.server">
+            <fileset dir="${server.dir}/bootstrap/lib">
+                <include name="**/*.jar"/>
+            </fileset>
+            <fileset dir="${server.dir}/modules">
+                <include name="**/lib/*.jar"/>
+            </fileset>
+            <pathelement location="${junit.jar}"/>
+        </path>
+        <path id="cp.server.test">
+            <path refid="cp.server"/>
+            <pathelement path="${classes.dir}"/>
+        </path>
+    </target>
+    <target name="init" depends="env">
+        <mkdir dir="${src.dir}"/>
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${build.dir}/test-report"/>
+    </target>
+    <target name="prepare" depends="init">
+        <unjar dest="${src.dir}">
+            <fileset dir="${test.dir}" includes="**/*.jar"/>
+        </unjar>
+    </target>
+    <target name="compile" depends="prepare">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" target="1.6" source="1.6" nowarn="yes"
+               classpathref="cp.server" encoding="gbk" listfiles="yes" verbose="on" includeantruntime="yes">
+            <include name="com/yuep/base/**"/>
+            <include name="com/yuep/core/test/**"/>
+        </javac>
+        <copy todir="${classes.dir}" includeemptydirs="false">
+            <fileset dir="${src.dir}" excludes="**/*.java"/>
+        </copy>
+    </target>
+    <target name="unit-test" depends="compile">
+        <junit printsummary="yes" fork="yes" dir="${run.dir}">
+            <classpath refid="cp.server.test"/>
+            <formatter type="brief"/>
+            <batchtest todir="${build.dir}/test-report">
+                <fileset dir="${classes.dir}">
+                    <include name="**/*Test.class"/>
+                    <include name="**/*TestCase.class"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+    <target name="all" depends="unit-test"/>
+    <target name="clean" depends="env">
+        <delete dir="${build.dir}"/>
+    </target>
+
+</project>

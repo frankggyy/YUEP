@@ -1,0 +1,15 @@
+<mapping>
+<description>teststudents</description>
+	<class name="com.yuep.base.xml.ArrayListItems">
+		<map-to xml="students" />
+		<field name="items" type="com.yuep.base.xml.test.TestStudent" collection="collection" />
+	</class>
+	
+	<class name="com.yuep.base.xml.test.TestStudent">
+		<map-to xml="student" />
+		<field name="name" type="java.lang.String">
+		</field>
+		<field name="old" type="java.lang.Integer">
+		</field>
+	</class>
+</mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<mapping>
+	<description>sync config</description>
+
+	<class name="com.yuep.base.xml.ArrayListItems">
+		<map-to xml="syncconfig" />
+		<field name="items" type="com.yuep.nms.core.common.synccore.model.SyncNode"
+			collection="collection" />
+	</class>
+
+	<class name="com.yuep.nms.core.common.synccore.model.SyncNode">
+		<map-to xml="node" />
+		<field name="name" type="java.lang.String">
+			<bind-xml name="name" node="attribute" location="node" />
+		</field>
+		<field name="syncAction" type="java.lang.String">
+			<bind-xml name="syncAction" node="attribute" location="node" />
+		</field>
+		<field name="nodeType" type="java.lang.String">
+			<bind-xml name="nodeType" node="attribute" location="node" />
+		</field>
+		<field name="depends" type="java.lang.String" collection="collection" />
+		<field name="includes" type="java.lang.String" collection="collection"/>
+		<field name="requested" type="java.lang.Boolean">
+			<bind-xml name="requested" node="attribute" location="node" />
+		</field>
+	</class>
+</mapping>

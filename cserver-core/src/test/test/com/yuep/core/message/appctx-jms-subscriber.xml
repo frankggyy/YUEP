@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd">
+
+	<bean id="jndiTemplate" class="org.springframework.jndi.JndiTemplate">
+		<property name="environment">
+			<props>
+				<prop key="java.naming.factory.initial">
+				    fr.dyade.aaa.jndi2.client.NamingContextFactory
+				</prop>
+				<prop key="java.naming.factory.host">127.0.0.1</prop>
+				<prop key="java.naming.factory.port">16400</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="connectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="tcf" />
+		<property name="jndiTemplate" ref="jndiTemplate" />
+	</bean>
+
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory"/>
+		<property name="receiveTimeout" value="30000"/>
+	</bean>
+	
+	<bean id="messageReceiver" class="test.com.yuep.core.message.MsgReceive"/>
+
+	<bean id="systemTopic" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="systemTopic" />
+		<property name="jndiTemplate" ref="jndiTemplate" />
+	</bean>
+	
+	<bean id="defaultMessageListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="concurrentConsumers" value="1" />
+		<property name="messageListener" ref="messageReceiver" />
+		<property name="connectionFactory" ref="connectionFactory" /> 
+		<property name="destination" ref="systemTopic" /> 
+	</bean>
+	
+</beans>

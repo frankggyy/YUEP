@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Review id="nms-core-definition">
+    <ReviewIssue id="GGIXY6PI">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 13:55:56:406 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 14:09:32:125 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>yangtao</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File></File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary></Summary>
+        <Description>很多类都没有java Doc，需要加上</Description>
+        <Annotation></Annotation>
+        <Revision></Revision>
+        <Resolution>item.resolution.label.validNeedsfixing</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGIYDHV3">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 14:07:50:703 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 14:06:54:593 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>yangtao</ReviewerId>
+        <AssignedTo></AssignedTo>
+        <File></File>
+        <Type>item.type.label.programLogic</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>没有必要的转型</Summary>
+        <Description>	@Override
+	public String getName() {
+		if(getPrincipal() instanceof User)
+            return ((User) getPrincipal()).getUsername();
+        if(getPrincipal() instanceof Principal)
+            return ((Principal) getPrincipal()).getName();
+        else
+            return getPrincipal() != null ? getPrincipal().toString() : "";
+	}
+如果需要加入新的Principal，这儿就需要进行判断。建议在 Principal中实现getName方法</Description>
+        <Annotation>这个到时候可能会改成User implements Principal。</Annotation>
+        <Revision></Revision>
+        <Resolution>item.resolution.label.validFixlater</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGIYK5SO">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 14:13:01:656 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 10:52:13:046 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>yangtao</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File></File>
+        <Type>item.type.label.programLogic</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>参数返回值问题</Summary>
+        <Description>public interface Authentication extends Principal {
+	
+	/**
+	 * @return 被认证的主体或标识
+	 */
+	public Object getPrincipal();
+	
+	/**
+	 * @return 验证该主体是合法或非法的验证信息
+	 */
+	public Object getCredentials();
+	
+	/**
+	 * 获取认证过程结束后主体的详细信息. 如果认证失败, 此方法返回&lt;code&gt;null&lt;/code&gt;
+	 * 
+	 * @return 被认证的主体或标识信息
+	 */
+	public Object getAuthenticPrincipal();
+	
+	/**
+	 * 认证过程结束后, 被认证的主体或标识信息将被填充到认证请求中
+	 * 
+	 * @param authenticPrincipal  被认证的主体或标识信息
+	 */
+	public void setAuthenticPrincipal(Object authenticPrincipal);
+}
+
+为什么这儿的参数和返回值，都要用Object？？这样可读性能很差！</Description>
+        <Annotation></Annotation>
+        <Revision></Revision>
+        <Resolution>item.resolution.label.validFixlater</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGIYNU5F">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 14:15:53:187 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 14:10:11:843 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>yangtao</ReviewerId>
+        <AssignedTo></AssignedTo>
+        <File></File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>关于对象命名和包命名问题</Summary>
+        <Description>很多地方命名都不是很明确，如对象名称Label，Acp，com.yuep.nms.core.common.sm.bo.rbac，com.yuep.nms.core.common.sm.bo.log,com.yuep.nms.core.common.sm.bo.object,命名含义不清。</Description>
+        <Annotation>删掉object包</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGIYW1AF">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 14:22:15:687 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 10:49:11:609 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>yangtao</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File></File>
+        <Type>item.type.label.programLogic</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>权限模块定义方式</Summary>
+        <Description>&lt;module moduleName="FM" description="module.FM"&gt;
+		&lt;permission permissionName="fm" description="module.fm.FM"/&gt;
+	&lt;/module&gt;	
+	
+	&lt;module moduleName="EQM" description="perm.module.EQM"&gt;
+		&lt;permission permissionName="eqm" description="module.eqm.EQM"/&gt;
+	&lt;/module&gt;	
+	
+	&lt;module moduleName="PM" description="perm.module.PM"&gt;
+		&lt;permission permissionName="pm" description="module.pm.PM"/&gt;
+	&lt;/module&gt;	
+	
+	&lt;module moduleName="CM" description="perm.module.CM"&gt;
+		&lt;permission permissionName="CM" description="module.cm.CM"/&gt;
+	&lt;/module&gt;
+
+以这种方式定义权限，就不能动态加入新的模块了。</Description>
+        <Annotation></Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGIZ3HHT">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 14:28:03:281 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 10:48:12:390 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>yangtao</ReviewerId>
+        <AssignedTo></AssignedTo>
+        <File></File>
+        <Type>item.type.label.programLogic</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>Certificate接口的问题</Summary>
+        <Description>Label和Permission都实现了Certificate接口，Certificate接口并未在你的程序中作为基础接口使用，如果没有使用，该接口就没有用处，你的抽象层次需要重新考虑。</Description>
+        <Annotation></Annotation>
+        <Revision></Revision>
+        <Resolution>item.resolution.label.validDuplicate</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGIZ68XO">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 14:30:12:156 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 10:48:32:765 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>yangtao</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File></File>
+        <Type>item.type.label.programLogic</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>Module类中变量命名问题</Summary>
+        <Description>    /** 
+     * 模块下包含的权限项 
+     */
+    @OneToMany(targetEntity = Permission.class, fetch = FetchType.EAGER)
+	@JoinTable(
+		name = "SM_MODULE_PRIVILEDGES", 
+		joinColumns = @JoinColumn(name = "MODULE_ID"), 
+		inverseJoinColumns = @JoinColumn(name = "PRIVILEDGE_ID")
+	)
+    private List&lt;Permission&gt; priviledges;
+
+这个变量的命名和其类型完全不一致，建议修改。</Description>
+        <Annotation>已改成permissions</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGIZE21W">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 14:36:16:484 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 10:45:31:671 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>yangtao</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File></File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>Log对象命名</Summary>
+        <Description>Log建议命名为OperationLog，要不会和系统日志Log混淆</Description>
+        <Annotation>已经该成OperationLog了</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGIZYKFH">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 14:52:13:421 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 10:41:18:250 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>yangtao</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File></File>
+        <Type>item.type.label.programLogic</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>Domain对象Hibernate映射错误</Summary>
+        <Description>	@Column(name = "MOBJECT")
+	@Type(type = "com.yuep.nms.core.common.base.ListUserType")
+    private List&lt;String&gt; managedObjects;
+
+字符串长度没有指定，超过256会出错。
+
+	@ManyToOne(targetEntity = Domain.class, fetch = FetchType.EAGER)
+    @ForeignKey(name = "FK5C15819364F1123E", inverseName = "ROOT")
+    @JoinColumn(name = "ROOT_ID")
+	private Domain root;
+此处不建议做多对一的级联映射，因为域嵌套域，会导致很多数据被查询出来，如果数据量巨大，会导致outofmemory</Description>
+        <Annotation></Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGJ02XY2">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 14:55:37:562 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 10:40:58:250 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>yangtao</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File></File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.normal</Severity>
+        <Summary>TargetObject对象属性命名不符合规范</Summary>
+        <Description>
+	@Id
+	@GeneratedValue(generator = "generator")
+	@GenericGenerator(name = "generator", strategy = "uuid.hex")
+	@Column(name = "ID")
+	private String id;
+	
+	@Column(name = "BOUND_ID", nullable = false)
+	private String name;
+	
+	@Column(name = "BOUND_NAME", nullable = false)
+	private String text;
+	
+	/**
+
+     属性被命名为text，含义不明确，请重命名</Description>
+        <Annotation>这个接口已经没有了</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGJ0939Y">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 15:00:24:406 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 10:53:43:390 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>yangtao</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File></File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>代码中出现中文字符</Summary>
+        <Description>public enum UserStatus implements EnumValue {
+	ACTIVE(0, "激活"), DEACTIVE(1, "禁用");
+
+	private int value;
+	private String label;
+
+	private UserStatus(int value, String label) {
+		this.value = value;
+		this.label = label;
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see com.yotc.opview.framework.bo.EnumValue#getValue()
+	 */
+	@Override
+	public int getValue() {
+		return value;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public String toString() {
+		return label;
+	}
+}
+
+这儿出现中文字符，需要去掉</Description>
+        <Annotation>对枚举常量的中文描述已经不在中文里边编码描述</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGJ1H6RO">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 15:34:41:796 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 15:36:53:093 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>yangtao</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File></File>
+        <Type>item.type.label.programLogic</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>SM模块没有定义异常</Summary>
+        <Description> public User deleteUser(String username) {
+//    	SecurityControlContext context = SecurityEngine.getInstance().getSecurityContext();
+//    	return context.deleteUser(username);
+    	
+    	User user = userDao.getUniqueEntityByOneProperty("username", username);
+    	if (user == null) 
+    		throw new RuntimeException();//SmException(SmException.USER_NOT_EXIST);
+    	return user;
+    }
+
+不要直接使用RuntimeException异常。这儿需要定义SM模块的异常
+    </Description>
+        <Annotation></Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGJ1KRTY">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 15:37:29:062 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 10:37:54:031 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>yangtao</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File></File>
+        <Type>item.type.label.programLogic</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>角色的删除、修改、添加，对其他在线用户影响，没有在代码中体现</Summary>
+        <Description>   /**
+     * (non-Javadoc)
+     * 
+     * @see com.ycignp.veapo.server.biz.sm.service.SmService#updateRole(com.ycignp.veapo.common.bo.sm.rbac.Role)
+     */
+    public void updateRole(Role updatedRole) {
+//    	SecurityControlContext context = SecurityEngine.getInstance().getSecurityContext();
+//    	roleDao.updateEntity(updatedRole);
+//    	context.createRole(updatedRole);
+    	
+    	
+    	roleDao.updateEntity(updatedRole);
+    }
+
+    /**
+     * (non-Javadoc)
+     * 
+     * @see com.ycignp.veapo.server.biz.sm.service.SmService#deleteRole(java.lang.String)
+     */
+    public void deleteRole(String roleName) {
+    	
+    }
+    
+    /**
+     * (non-Javadoc)
+     * 
+     * @see com.ycignp.veapo.server.biz.sm.service.SmService#deleteRole(com.ycignp.veapo.common.bo.sm.rbac.Role)
+     */
+    public void deleteRole(Role role) {
+//    	SecurityControlContext context = SecurityEngine.getInstance().getSecurityContext();
+//    	roleDao.deleteEntity(role);
+//    	context.deleteRole(role);
+    	
+    	roleDao.deleteEntity(role);
+    }
+
+角色的删除、修改、添加，对其他在线用户影响，没有在代码中体现</Description>
+        <Annotation>这块逻辑代码现在在代码中已经添加。</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGJ1QHIH">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 15:41:55:625 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 13:51:56:468 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>yangtao</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File></File>
+        <Type>item.type.label.programLogic</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>SmService层为无状态的，定义loginId为全局变量不合适，并发情况下会出错</Summary>
+        <Description>    private UserLoginData doOpenSession(String clientIp, User user) {
+        if (! user.isActivedUser()) 
+        	throw new RuntimeException();//SmException(SmException.ACCOUNT_UNUSED);
+        
+//        Session session = sessionFactoryMBean.openSession(loginId, remoteHost);
+        SessionService sessionService = CoreContext.getInstance().local().getService("sessionService", SessionService.class);
+        com.yuep.core.session.def.Session sid = sessionService.login(user.getUsername(),clientIp);
+        UserLoginData newSession = new UserLoginData(sid.getSessionId(), user.getPassword());
+        newSession.setUsername(loginId);
+        //newSession.setSessionId(session.getSessionId());
+        //newSession.setApplyScene(ServerContext.getApplyScene());
+        //newSession.setSupportedTypes(ServerContext.getSupportedDeviceTypes());
+        
+        return newSession;
+    }
+    
+    private String loginId;
+    private String remoteHost;
+
+Service层为无状态的，定义loginId为全局变量不合适，并发情况下会出错。此处需要修改实现</Description>
+        <Annotation>SmService已经被细化成多个Service接口了， SmService现在已经不存在了， 也不会出现会话状态和并发问题</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+</Review>

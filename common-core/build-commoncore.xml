@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+
+<project name="commoncore" default="deploy" basedir=".">
+	
+	<property name="PrjHome" value="." />
+	<property name="BuildProject" value="yuep-build" />
+	<import file="${PrjHome}/../${BuildProject}/support/properties.xml" />
+
+	<property name="CommonCore.pkg" value="commoncore.jar" />
+	<property name="dest" value="${PrjHome}/common-core-classes" />
+	<property name="deploy" value="${PrjHome}/lib/${product}" />
+	<property name="CommonCoreSrc" value="${PrjHome}/src/java" />
+
+	<target name="mkdir">
+		<mkdir dir="${dest}" />
+		<mkdir dir="${deploy}" />
+	</target>
+
+	<target depends="mkdir" name="make">
+		<javac bootclasspathref="project.class.path" encoding="${javac.encoding}" 
+			debug="${javac.debug}" debuglevel="${javac.debuglevel}" 
+			optimize="${javac.optimize}" deprecation="${javac.deprecation}" 
+			nowarn="${javac.nowarn}" source="${javac.source}" 
+			target="${javac.target}" listfiles="${javac.listfiles}" 
+			fork="${javac.fork}" includeAntRuntime="${javac.includeAntRuntime}" 
+			includeJavaRuntime="${javac.includeJavaRuntime}" destdir="${dest}" 
+			includes="${common.core.prefix}/**">
+
+			<src path="${CommonCoreSrc}" />
+			<compilerarg value="-J-Duser.language=en" />
+		</javac>
+	</target>
+
+	<target name="clean">
+		<delete file="${deploy}/${CommonCore.pkg}" />
+		<delete failonerror="false" includeemptydirs="true">
+			<fileset dir="${dest}" />
+		</delete>
+	</target>
+	
+	<target name="copy_src_conf_file">
+		<copy todir="${dest}" overwrite="true">
+			<fileset dir="${CommonCoreSrc}/">
+				<include name="**/*.*" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target depends="clean,make,copy_src_conf_file" name="jar">
+		<jar basedir="${dest}" index="${manifest.index}"
+			duplicate="${manifest.duplicate}" destfile="${deploy}/${CommonCore.pkg}"
+			includes="${common.core.prefix}/**">
+			<manifest>
+				<attribute name="Vendor" value="${manifest.vendor}" />
+				<attribute name="Built-Time" value="${LOCALTIME}" />
+				<attribute name="Version" value="${manifest.version}" />
+				<attribute name="BuildNumber" value="${manifest.buildnumber}" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="copy_files">
+		<copy tofile="${runenv.dir}/modules/lib/${product}/${CommonCore.pkg}" file="${deploy}/${CommonCore.pkg}" overwrite="true"/>
+	</target>
+		
+	<target depends="jar,copy_files" name="deploy" />
+
+</project>

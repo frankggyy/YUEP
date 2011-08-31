@@ -1,0 +1,117 @@
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="com.yuep.base.log.impl.LogbackPatternLayout">
+      <Pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</Pattern>
+    </layout>
+  </appender>
+  
+  <appender name="ROLLINGFILE_SUPPORT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>log/support.log</File>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <FileNamePattern>log/support.%i.log</FileNamePattern>
+      <MinIndex>1</MinIndex>
+      <MaxIndex>30</MaxIndex>
+    </rollingPolicy>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <MaxFileSize>1MB</MaxFileSize>
+    </triggeringPolicy>
+    <layout class="com.yuep.base.log.impl.LogbackPatternLayout">
+      <Pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</Pattern>
+    </layout>
+  </appender>
+  <root level="info">
+  	<appender-ref ref="STDOUT"/>
+    <appender-ref ref="ROLLINGFILE_SUPPORT" />
+  </root>
+  
+  <appender name="ROLLINGFILE_CORE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>log/clientcore.log</File>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <FileNamePattern>log/clientcore.%i.log</FileNamePattern>
+      <MinIndex>1</MinIndex>
+      <MaxIndex>30</MaxIndex>
+    </rollingPolicy>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <MaxFileSize>1MB</MaxFileSize>
+    </triggeringPolicy>
+    <layout class="com.yuep.base.log.impl.LogbackPatternLayout">
+      <Pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</Pattern>
+    </layout>
+  </appender>
+  <logger name="clientcore" level="info">
+	<appender-ref ref="ROLLINGFILE_CORE" />
+  </logger> 
+  
+  <appender name="ROLLINGFILE_NMSPROXY" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>log/nmsproxy.log</File>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <FileNamePattern>log/nmsproxy.%i.log</FileNamePattern>
+      <MinIndex>1</MinIndex>
+      <MaxIndex>30</MaxIndex>
+    </rollingPolicy>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <MaxFileSize>1MB</MaxFileSize>
+    </triggeringPolicy>
+    <layout class="com.yuep.base.log.impl.LogbackPatternLayout">
+      <Pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</Pattern>
+    </layout>
+  </appender>
+  <logger name="nmsproxy" level="info">
+	<appender-ref ref="ROLLINGFILE_NMSPROXY" />
+  </logger> 
+  
+  <appender name="ROLLINGFILE_SM" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>log/sm.log</File>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <FileNamePattern>log/sm.%i.log</FileNamePattern>
+      <MinIndex>1</MinIndex>
+      <MaxIndex>30</MaxIndex>
+    </rollingPolicy>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <MaxFileSize>1MB</MaxFileSize>
+    </triggeringPolicy>
+    <layout class="com.yuep.base.log.impl.LogbackPatternLayout">
+      <Pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</Pattern>
+    </layout>
+  </appender>
+  <logger name="sm" level="info">
+	<appender-ref ref="ROLLINGFILE_SM" />
+  </logger> 
+  
+  <appender name="ROLLINGFILE_MOMGR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>log/momgr.log</File>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <FileNamePattern>log/momgr.%i.log</FileNamePattern>
+      <MinIndex>1</MinIndex>
+      <MaxIndex>30</MaxIndex>
+    </rollingPolicy>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <MaxFileSize>1MB</MaxFileSize>
+    </triggeringPolicy>
+    <layout class="com.yuep.base.log.impl.LogbackPatternLayout">
+      <Pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</Pattern>
+    </layout>
+  </appender>
+  <logger name="momgr" level="info">
+	<appender-ref ref="ROLLINGFILE_MOMGR" />
+  </logger> 
+  
+  <appender name="ROLLINGFILE_SAMPLE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>log/sample.log</File>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <FileNamePattern>log/sample.%i.log</FileNamePattern>
+      <MinIndex>1</MinIndex>
+      <MaxIndex>30</MaxIndex>
+    </rollingPolicy>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <MaxFileSize>1MB</MaxFileSize>
+    </triggeringPolicy>
+    <layout class="com.yuep.base.log.impl.LogbackPatternLayout">
+      <Pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</Pattern>
+    </layout>
+  </appender>
+  <logger name="sample" level="info">
+	<appender-ref ref="ROLLINGFILE_SAMPLE" />
+  </logger>   
+  
+</configuration>

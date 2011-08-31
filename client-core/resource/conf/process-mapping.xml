@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<mapping>
+	<description>client startup process</description>
+	
+	<class name="com.yuep.core.client.main.process.ProcessRsps">
+		<map-to xml="rsps" />
+		<field name="rsps" type="com.yuep.core.client.main.process.ProcessRsp" collection="collection">
+		</field>
+	</class>
+	
+	<class name="com.yuep.core.client.main.process.ProcessRsp">
+		<map-to xml="rsp" />
+		<field name="step" type="java.lang.Integer">
+			<bind-xml name="step" node="attribute" location="rsp"/>
+		</field>
+		<field name="rspClazz" type="java.lang.String">
+            <bind-xml name="rspClazz" node="attribute" location="rsp"/>
+        </field>
+	</class>
+</mapping>

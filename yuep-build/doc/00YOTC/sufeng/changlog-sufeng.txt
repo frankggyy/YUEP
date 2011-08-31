@@ -1,0 +1,12 @@
+2010-12-10
+
+1，spring的xml打成jar，上层网管不用修改jar。
+   注意，xml jar里面必须有一层目录conf/,形如 conf/appctx-sm.xml
+   每个模块一个xml jar。
+2，增加了SmException，并国际化了几个error code
+3，spring的占位符问题，现在全部通过ExtendPropertyPlaceholderConfigurer来解决，所有module都可以自己往spring container中注入属性对，但必须在module.beforeLoad中进行。
+4，db等多个模块的spring xml配置都不再硬编码，而是写${占位符名}，比如${db.user}
+5，remote,local都暴露出来了。
+6，优化了nms proxy与server facade。
+7，将module的容器管理接口与上层功能接口分离。
+8，ant脚本，使用condition分支处理。

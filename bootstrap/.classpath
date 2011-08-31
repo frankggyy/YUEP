@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="src" path="src/test"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="/common-base/lib/jakarta-commons/commons-beanutils-1.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="/common-base/lib/jakarta-commons/commons-collections-3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/common-base/lib/jakarta-commons/commons-io-1.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/common-base/lib/jakarta-commons/commons-lang-2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/common-base/lib/jakarta-commons/commons-logging-1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/common-base/lib/jakarta-commons/commons-net-1.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/common-base/lib/jakarta-commons/commons-pool-1.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="/common-base/lib/jdom/jdom-1.0beta9.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="lib" path="lib/log4j/log4j.jar"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/toolbox-log"/>
+	<classpathentry kind="output" path=".classes"/>
+</classpath>

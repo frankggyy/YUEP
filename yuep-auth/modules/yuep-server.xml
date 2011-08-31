@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <system-param>
+        <property name="rmi.port" value="8888" />
+    </system-param>
+
+    <modules>
+        <module name="servercore" moduleClass="com.yuep.core.servercore.impl.ServerCoreModule"
+            publicJars="yuep/commonbase.jar,yuep/commoncore.jar,spring,jms,quartz,logback">
+            <property name="configLocations" value="classpath*:conf/appctx.xml" />
+            <property name="jms.port" value="16010" />
+            <property name="jms.naming.port" value="16400" />
+            <property name="java.naming.factory.initial"
+                value="fr.dyade.aaa.jndi2.client.NamingContextFactory" />
+        </module>
+
+        <module name="jmsserver" moduleClass="com.yuep.core.jmsserver.impl.JmsServerModule"
+            depends="servercore" publicJars="joram">
+            <property name="jms.server.launch" value="true" />
+            <property name="jms.manager.class"
+                value="com.yuep.core.jmsserver.impl.joram.JoramManagerImpl" />
+        </module> 
+
+        <module name="moduleA-api" moduleClass="com.whnec.yuep.cases.module.APIModuleA"
+            depends="servercore" />
+        <module name="moduleA" moduleClass="com.whnec.yuep.cases.module.ModuleA"
+            depends="moduleA-api,jmsserver" />
+        <module name="moduleB" moduleClass="com.whnec.yuep.cases.module.ModuleB"
+            depends="moduleA" />
+        <module name="moduleC" moduleClass="com.whnec.yuep.cases.module.ModuleC"
+            depends="moduleA-api,jmsserver" />
+
+    </modules>
+
+</config>

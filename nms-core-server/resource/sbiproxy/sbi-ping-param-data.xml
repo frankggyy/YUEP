@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sbi-ping-params>
+
+	<param deviceType="C8000" pingFrequency="10000" retryNum="0"/>
+	<param deviceType="C1500" pingFrequency="10000" retryNum="0"/>
+	<param deviceType="C1000" pingFrequency="10000" retryNum="0"/>
+	<param deviceType="M3_16B0P" pingFrequency="10000" retryNum="0"/>
+    <param deviceType="M3_2400P" pingFrequency="10000" retryNum="0"/>
+    <param deviceType="EC_5122" pingFrequency="10000" retryNum="0"/>
+    
+</sbi-ping-params>
+
+
+

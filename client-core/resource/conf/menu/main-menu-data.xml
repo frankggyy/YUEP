@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menus>
+
+	<menu name="system" text="common.mainframe.menu.system" mnemonic="s">
+		<menu-item clazz="com.yuep.core.client.main.mainframe.action.system.SystemExitAction"
+			text="common.mainframe.menu.system.menuitem.exit" mnemonic="e" icon="system.png"/>
+	</menu>
+	
+</menus>
+

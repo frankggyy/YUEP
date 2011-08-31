@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources>
+<!--  yuep数据库数据源配置-->	
+	<datasource name="yuep">
+	  <properties>
+			<property name="dscp.dataSource" value="com.mchange.v2.c3p0.ComboPooledDataSource" />
+    		<property name="dscp.driverClass" value="com.mysql.jdbc.Driver" />
+			<property name="dscp.jdbcUrl" value="jdbc:mysql://localhost:3306/yuep" />
+			<property name="dscp.user" value="root" />
+			<property name="dscp.password" value="" />
+			<property name="dscp.minPoolSize" value="1"/>
+			<property name="dscp.maxPoolSize" value="20"/>
+			<property name="dscp.maxIdleTime" value="1800"/>
+			<property name="dscp.acquireIncrement" value="2"/>
+			<property name="dscp.maxStatements" value="0"/>
+			<property name="dscp.initialPoolSize" value="2"/>
+			<property name="dscp.idleConnectionTestPeriod" value="1800"/>
+			<property name="dscp.acquireRetryAttempts" value="30"/>
+			<property name="dscp.breakAfterAcquireFailure" value="true"/>
+			<property name="dscp.testConnectionOnCheckout" value="false"/>
+	   </properties>
+	   
+	   <mappingclasses>
+			<mappingclass classname="com.yuep.core.db.id.def.ObjectID"/>
+   	 		<mappingclass packagename="com.yuep.nms.core.common.mocore.model"/>
+    		<mappingclass packagename="com.yuep.nms.core.common.smcore.model"/>
+		</mappingclasses>
+		
+	   <hibernateProperties>
+			<property key="hibernate.connection.provider_class">com.yuep.core.db.datasource.DataSourceConnProvider</property>
+			<property key="current_session_context_class">org.hibernate.context.ManagedSessionContext</property>
+			<property key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+			<property key="hibernate.hbm2ddl.auto">update</property>
+			<property key="hibernate.show_sql">true</property>
+			<property key="hibernate.jdbc.batch_size">100</property>
+			<property key="hibernate.jdbc.fetch_size">250</property>
+			<property key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+		</hibernateProperties>		
+	</datasource>
+
+</datasources>

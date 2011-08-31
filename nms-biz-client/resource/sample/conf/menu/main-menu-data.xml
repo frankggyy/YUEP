@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menus>
+	<menu name="sample" text="sample.menu.main" mnemonic="e">
+		<menu-item
+			clazz="com.yuep.nms.biz.client.sample.mvc.action.OpenMvcSampleAction"
+			text="sample.menu.mvc" mnemonic="M" />
+		<menu-item
+			clazz="com.yuep.nms.biz.client.sample.navigator.action.OpenSampleDataNavigatorAction"
+			text="sample.menu.navigator" mnemonic="n" />
+		<menu-item
+			clazz="com.yuep.nms.biz.client.sample.wizard.action.OpenWizardAction"
+			text="sample.menu.wizard" mnemonic="w" />
+			<menu-item
+			clazz="com.yuep.nms.biz.client.sample.editor.action.OpenNumberEditorAction"
+			text="sample.menu.editor" mnemonic="n" />
+	</menu>
+</menus>
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menus>
+
+	<menu name="topo.blank">
+		<menu-item clazz="com.yuep.nms.biz.client.topo.action.OpenAddDomainViewAction"
+			text="topo.blank.menu.adddomainorgoup" mnemonic="c"/>
+		<menu-item clazz="com.yuep.nms.biz.client.topo.action.OpenAddNeViewAction"
+			text="topo.blank.menu.addne" mnemonic="a"/>
+		<menu-item clazz="com.yuep.nms.core.client.mocore.nm.action.OpenAddNmViewAction"
+			text="topo.blank.menu.addnm" mnemonic="m"/>
+	</menu>
+	
+	
+	<menu name="topo.nms">
+		<menu-item clazz="com.yuep.nms.biz.client.topo.action.DeleteManagedNodeAction"
+			text="topo.nms.menu.deletenms" mnemonic="d"/>
+		<menu-item clazz="com.yuep.nms.biz.client.topo.action.SyncNmsAction"
+			text="topo.nms.menu.syncnms" mnemonic="S"/>
+	</menu>
+	
+	<menu name="topo.domain">
+		<menu-item clazz="com.yuep.nms.biz.client.topo.action.DeleteDomainAction"
+			text="topo.domain.menu.deletedomain" mnemonic="d"/>
+	</menu>
+	
+	<menu name="topo.ne">
+		<menu-item clazz="com.yuep.nms.biz.client.topo.action.DeleteManagedNodeAction"
+			text="topo.domain.menu.deletene" mnemonic="d"/>
+	</menu>
+	
+	
+</menus>
+

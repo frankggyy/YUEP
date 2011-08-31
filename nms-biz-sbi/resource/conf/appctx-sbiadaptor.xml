@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Adaptors>
+	<Adaptor deviceType="C8000" version="V1">
+		<prop type="eqm" implClass="com.yuep.nms.biz.sbi.eqm.EqmAdaptorImpl"
+			intfClass="com.yuep.nms.biz.common.sbi.EqmAdaptor" />
+	</Adaptor>
+</Adaptors>

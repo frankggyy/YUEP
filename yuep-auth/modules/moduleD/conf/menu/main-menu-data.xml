@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menus>
+    <menu name="a" text="a.menu" mnemonic="a">
+        <menu-item clazz="com.whnec.yuep.cases.action.TimeAction"
+            text="a.menu.time" mnemonic="t" />
+        <menu-item />
+        <menu-item referenceMenu="exception" />
+        <menu-item />
+        <menu-item clazz="com.whnec.yuep.cases.action.MessageAction"
+            text="a.menu.message" mnemonic="m" />
+    </menu>
+    <menu name="exception" text="a.menu.exception" mnemonic="e">
+        <menu-item clazz="com.whnec.yuep.cases.action.YuepExceptionAction"
+            text="a.menu.exception.yuep" mnemonic="y" />
+        <menu-item clazz="com.whnec.yuep.cases.action.UserDefineExceptionAction"
+            text="a.menu.exception.user" mnemonic="u" />
+    </menu>
+</menus>
+

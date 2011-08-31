@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+	<system-param>
+		<property name="rmi.port" value="8888" />
+		<property name="loggerConfigLocation" value="bootstrap/conf/logback-server.xml" />
+		<property name="defaultLoggerName" value="servercore" />
+	</system-param>
+
+	<modules>
+		<module name="servercore" moduleClass="com.yuep.core.servercore.impl.ServerCoreModule" 
+		 publicJars="yuep/commonbase.jar,yuep/commoncore.jar,spring,jms,quartz">
+			<property name="configLocations" value="classpath*:conf/appctx.xml" />
+			<property name="jms.port" value="16010" />
+			<property name="jms.naming.port" value="16400" />
+			<property name="java.naming.factory.initial" value="fr.dyade.aaa.jndi2.client.NamingContextFactory"/>
+		</module>
+		
+		<module name="jmsserver" moduleClass="com.yuep.core.jmsserver.impl.JmsServerModule" depends="servercore" 
+		 publicJars="joram">
+			<property name="jms.server.launch" value="true" />
+			<property name="jms.manager.class" value="com.yuep.core.jmsserver.impl.joram.JoramManagerImpl"/>
+		</module>
+		
+		<module name="db" moduleClass="com.yuep.core.db.module.DbModule" depends="jmsserver" publicJars="hibernate,mysql,c3p0,dom4j,javassist,antlr">
+			<property name="db.datasources" value="conf/yuepdb.xml" />
+			<property name="db.server.manager" value="com.yuep.core.db.server.manager.impl.mysql.MysqlServerManagerImpl"/>
+		</module>
+		
+		<module name="concurrent" moduleClass="com.yuep.base.concurrent.impl.ConcurrentModule" depends="servercore"/>
+		
+		<module name="nmsbase" moduleClass="com.yuep.nms.core.common.base.impl.NmsBaseModule" depends="db"/>
+		
+		<module name="mocore-common" moduleClass="com.yuep.nms.core.common.mocore.module.MoCoreModule" depends="nmsbase">
+		</module>
+		
+		<module name="mocore-server" moduleClass="com.yuep.nms.core.server.mocore.module.MoCoreModule" depends="mocore-common" publicJars="castor">
+			<property name="mo.staticinfo" value="conf/model/mo_static_info.xml" />
+		</module>
+		
+		<module name="subsystemproxycore-common" moduleClass="com.yuep.nms.core.common.subsystemproxycore.module.SubSystemProxyCoreDefinationModule" depends="mocore-common" >
+		</module>
+		
+		<module name="subsystemproxycore-server" moduleClass="com.yuep.nms.core.server.subsystemproxycore.module.SubSystemProxyCoreModule" depends="mocore-server,subsystemproxycore-common" >
+		</module>
+		
+		<module name="subsystemproxymanager-server" moduleClass="com.yuep.nms.core.server.subsystemproxymanager.module.SubSystemProxyManagerModule" depends="subsystemproxycore-server" >
+		</module>
+	
+		<module name="nmsproxy-server" moduleClass="com.yuep.nms.core.server.nmsproxy.module.NmsProxyModule" depends="subsystemproxycore-server" >
+		</module>
+		
+		<module name="synccore-common" moduleClass="com.yuep.nms.core.common.synccore.module.SyncCoreDefinitionModule" depends="mocore-common">
+		</module>
+		<module name="synccore-server" moduleClass="com.yuep.nms.core.server.synccore.module.SyncCoreServerModule" depends="synccore-common,mocore-server">
+			<property name="configLocations" value="conf/syncconfig-data.xml" />
+		</module>
+		
+		<module name="syncmanager-common" moduleClass="com.yuep.nms.core.common.syncmanager.module.SyncManagerDefModule" depends="synccore-common">
+		</module>
+		
+		<module name="syncmanager-server" moduleClass="com.yuep.nms.core.server.syncmanager.module.SyncManagerModule" depends="syncmanager-common,synccore-server,subsystemproxycore-server">
+		</module>
+		
+
+		
+		<module name="momanager-common" moduleClass="com.yuep.nms.core.common.momanager.module.MoManagerModule" depends="mocore-common">
+		</module>
+		
+		<module name="momanager-server" moduleClass="com.yuep.nms.core.server.momanager.module.MoManagerModule" depends="momanager-common,subsystemproxycore-server,nmsproxy-server,mocore-server" >
+		</module>
+		
+		<module name="nmsmanager-server" moduleClass="com.yuep.nms.core.server.nmsmanager.module.NmsManagerModule" depends="mocore-server,subsystemproxymanager-server,momanager-server,synccore-server" >
+		</module>
+		
+		<module name="sbi-common" moduleClass="com.yuep.nms.biz.common.sbi.SbiInfEqmModule" depends="momanager-server">
+		</module>
+		
+		<module name="sbi" moduleClass="com.yuep.nms.core.common.sbi.module.SbiModule" depends="sbi-common"/>
+		
+		<module name="sbiproxy-server" moduleClass="com.yuep.nms.core.server.sbiproxy.module.SbiProxyModule" depends="subsystemproxycore-server,sbi" >
+		</module>
+		
+		<module name="sbimanager-common" moduleClass="com.yuep.nms.core.common.sbimanager.module.SbiManagerDefinitionModule" depends="sbiproxy-server" >
+		</module>
+		
+		<module name="sbimanager-server" moduleClass="com.yuep.nms.core.server.sbimanager.module.SbiManagerModule" depends="sbimanager-common,nmsproxy-server,subsystemproxymanager-server" >
+		</module>
+		
+		<module name="smcore-common" moduleClass="com.yuep.nms.core.common.smcore.SmCoreDefinitionModule" depends="mocore-server">
+		</module>
+		<module name="smcore-server" moduleClass="com.yuep.nms.core.server.smcore.SmCoreModule" depends="concurrent,smcore-common">
+			<property name="configLocations" value="classpath*:conf/appctx-sm.xml" />
+		</module>
+		<module name="smmanager-common" moduleClass="com.yuep.nms.core.common.smmanager.SmManagerDefinitionModule" depends="smcore-common">
+		</module>
+		<module name="smmanager-server" moduleClass="com.yuep.nms.core.server.smmanager.SmManagerModule" depends="smmanager-common,smcore-server">
+		</module>
+		
+		<module name="eqm-common" moduleClass="com.yuep.nms.biz.common.eqm.EqmServiceModule" depends="smmanager-server">
+		</module>	
+		
+		<module name="eqm-server" moduleClass="com.yuep.nms.biz.server.eqm.EqmServiceImplModule" depends="eqm-common,sbi">
+		</module>
+
+		 
+	</modules>
+	
+</config>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<categories>
+
+	<category categoryId="SM">
+		<permission permissionId="SystemExit" actionFunctionsExpress="SystemExitAction"/>
+		<permission permissionId="SmMgmt" actionFunctionsExpress="OpenUserManagerAction,SaveUserAction,OpenRoleManagerAction,OpenOperationLogAction,OpenOnlineUserAction,OperationLogQueryAction,OperationLogExportAction,OnlineUserRefreshAction,OnlineUserKickAction,OpenUserMaintenanceAction,DeleteUserAction,ModifyUserAction,ActiveUserAction,DeactiveUserAction"/>
+		<permission permissionId="ModifySelfPassword" actionFunctionsExpress="ModifySelfPasswordOpenAction"/>
+		<permission permissionId="UnlockClient" actionFunctionsExpress="UnlockClientOpenAction,UnlockClientApplyAction"/>
+		<permission permissionId="RoleMgmt" actionFunctionsExpress="DeleteRoleAction,OpenUpdateRoleAction"/>
+		<permission permissionId="PermissionMgmt" actionFunctionsExpress="ModifyPermissionBundleAction,DeletePermissionBundleAction"/>
+	</category>
+	
+	<category categoryId="MO">
+		<permission permissionId="SbiMgmt" actionFunctionsExpress="OpenSbiManagerViewAction"/>
+		<permission permissionId="AddSubEms" actionFunctionsExpress="OpenAddNmViewAction"/>
+		<permission permissionId="AddDomain" actionFunctionsExpress="OpenAddDomainViewAction"/>
+		<permission permissionId="AddNe" actionFunctionsExpress="OpenAddNeViewAction"/>
+		<permission permissionId="DeleteNe" actionFunctionsExpress="DeleteManagedNodeAction"/>
+		<permission permissionId="DeleteNMS" actionFunctionsExpress="DeleteManagedNodeAction"/>
+		<permission permissionId="DeleteDomain" actionFunctionsExpress="DeleteDomainAction"/>
+		<permission permissionId="SyncNms" actionFunctionsExpress="SyncNmsAction"/>
+	</category>
+
+</categories>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+	<system-param>
+		<property name="loggerConfigLocation" value="bootstrap/conf/logback-client.xml" />
+		<property name="defaultLoggerName" value="clientcore" />
+	</system-param>
+	
+	<modules>
+		<module name="clientcore" moduleClass="com.yuep.core.client.main.ClientCoreModule" 
+		 publicJars="yuep/commonbase.jar,yuep/commoncore.jar,spring,castor,jms,joram,quartz,hibernate,antlr">
+			<property name="configLocations" value="classpath*:conf/appctx-clientcore.xml" />
+		</module>
+
+		<module name="nmsbase" moduleClass="com.yuep.nms.core.common.base.impl.NmsBaseModule" depends="clientcore">
+		</module>
+		
+		<module name="mocore-common" moduleClass="com.yuep.nms.core.common.mocore.module.MoCoreModule" depends="nmsbase">
+		</module>
+		
+		<module name="momanager-common" moduleClass="com.yuep.nms.core.common.momanager.module.MoManagerModule" depends="mocore-common">
+		</module>
+
+		<module name="smcore-common" moduleClass="com.yuep.nms.core.common.smcore.SmCoreDefinitionModule" depends="mocore-common">
+		</module>
+		
+		<module name="smmanager-common" moduleClass="com.yuep.nms.core.common.smmanager.SmManagerDefinitionModule" depends="smcore-common">
+		</module>
+		
+		
+		
+		<module name="smmanager-common" moduleClass="com.yuep.nms.core.common.smmanager.SmManagerDefinitionModule" depends="smcore-common"/>
+		<module name="mocore-client" moduleClass="com.yuep.nms.core.client.mocore.module.MoCoreClientModule" depends="momanager-common"/>
+		<module name="smcore-client" moduleClass="com.yuep.nms.core.client.smcore.impl.SmCoreClientModule" depends="smmanager-common"/>
+		<module name="smmanager-client" moduleClass="com.yuep.nms.core.client.smmanager.module.SmManagerClientModule" depends="smcore-client"/>
+		
+		<module name="synccore-common" moduleClass="com.yuep.nms.core.common.synccore.module.SyncCoreDefinitionModule" depends="mocore-common">
+		</module>
+		<module name="syncmanager-common" moduleClass="com.yuep.nms.core.common.syncmanager.module.SyncManagerDefModule" depends="synccore-common"/>
+		
+		<module name="eqm-common" moduleClass="com.yuep.nms.biz.common.eqm.EqmServiceModule" depends="mocore-common"/>
+		
+		<module name="topo-client" moduleClass="com.yuep.nms.biz.client.topo.TopoClientModule" depends="mocore-client,smmanager-client,sbimanager-common,eqm-common,syncmanager-common"/>
+		
+		<module name="sbimanager-common" moduleClass="com.yuep.nms.core.common.sbimanager.module.SbiManagerDefinitionModule" depends="mocore-client">
+		</module>
+		
+		<module name="sbimanager-client" moduleClass="com.yuep.nms.core.client.sbimanager.module.SbiManagerModule" depends="sbimanager-common" >
+		</module>
+	</modules>
+</config>

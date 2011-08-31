@@ -1,0 +1,330 @@
+<?xml version="1.0"?>
+
+<project name="yuep-javadoc" default="generate.javadoc" basedir=".">
+	
+	<property name="PrjHome" value="." />
+
+	<import file="properties.xml" />
+
+	<property name="toolboxlog.dir" value="${PrjHome}/../../toolbox-log" />
+	<property name="bootstrap.dir" value="${PrjHome}/../../bootstrap" />
+	<property name="common-base.dir" value="${PrjHome}/../../common-base" />
+	<property name="common-core.dir" value="${PrjHome}/../../common-core" />
+	<property name="toolbox.dir" value="${PrjHome}/../../toolbox-module" />
+	
+	<property name="gui-core.dir" value="${PrjHome}/../../client-core" />
+	<property name="enterprise-app-core.dir"    value="${PrjHome}/../../cserver-core" />
+	
+	<property name="server-core.dir"    value="${PrjHome}/../../nms-core-server" />
+	<property name="client-core.dir"    value="${PrjHome}/../../nms-core-client" />
+	<property name="sbi-core.dir"    value="${PrjHome}/../../nms-core-sbi" />
+	<property name="nms-core-definition.dir"    value="${PrjHome}/../../nms-core-definition" />
+	
+	<property name="nms-biz-server.dir"    value="${PrjHome}/../../nms-biz-server" />
+	<property name="nms-biz-client.dir"    value="${PrjHome}/../../nms-biz-client" />
+	<property name="nms-biz-sbi.dir"    value="${PrjHome}/../../nms-biz-sbi" />
+	<property name="nms-biz-definition.dir"    value="${PrjHome}/../../nms-biz-definition" />
+	
+	<!-- 与properties中的不一样 -->
+	<path id="javadoc.project.class.path">
+		<fileset dir="../${ToolboxLog.SupportLib.home}/">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="../${CommonBase.SupportLib.home}/">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="../${CommonCore.SupportLib.home}/">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="../${ClientCore.SupportLib.home}/">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="../${ServerCore.SupportLib.home}/">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="../${NmsCoreDef.SupportLib.home}/">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="../${NmsBizDef.SupportLib.home}/">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<target name="generate.javadoc" description="Generate the Javadoc HTML pages.">
+		<delete dir="javadoc" />
+		<mkdir dir="javadoc" />
+		<javadoc destdir="javadoc" classpathref="javadoc.project.class.path" 
+				windowtitle="Project Class Library" use="yes" 
+				linksource="no" splitindex="yes" 
+				encoding="GBK" docencoding="GBK">
+			
+			<packageset dir="${toolboxlog.dir}/src/java" defaultexcludes="yes">
+				<include name="com/yuep/base/log/def/**" />
+			</packageset>
+			<packageset dir="${bootstrap.dir}/src/java" defaultexcludes="yes">
+				<include name="com/yuep/base/bootstrap/def/**" />
+			</packageset>
+			<packageset dir="${common-base.dir}/src/java" defaultexcludes="yes">
+				<include name="com/yuep/base/cache/**" />
+				<exclude name="com/yuep/base/cache/**/impl/**" />
+				<include name="com/yuep/base/concurrent/**/def/**"/>
+				<exclude name="com/yuep/base/concurrent/**/impl/**" />
+				<include name="com/yuep/base/exception/**" />
+				<exclude name="com/yuep/base/exception/**/impl/**" />
+				<include name="com/yuep/base/log/**" />
+				<exclude name="com/yuep/base/log/**/impl/**" />
+				<include name="com/yuep/base/resource/**" />
+				<exclude name="com/yuep/base/resource/**/impl/**" />
+				<include name="com/yuep/base/util/**" />
+				<exclude name="com/yuep/base/util/**/impl/**" />
+				<include name="com/yuep/base/xml/**" />
+				<exclude name="com/yuep/base/xml/**/impl/**" />
+			</packageset>
+			
+			<fileset dir="${common-base.dir}/src/java" defaultexcludes="yes">
+				<include name="com/yuep/base/scheduler/AbstractSchedulerJob.java" />
+				<include name="com/yuep/base/scheduler/CommonSchedulerJob.java" />
+				<include name="com/yuep/base/scheduler/DefaultSchedulerExecutor.java" />
+				<include name="com/yuep/base/scheduler/FixedIntervalSchedulerJob.java" />
+				<include name="com/yuep/base/scheduler/ImmediateSchedulerJob.java" />
+				<include name="com/yuep/base/scheduler/OneTimeSchedulerJob.java" />
+				<include name="com/yuep/base/scheduler/SchedulerExecutor.java" />
+				<include name="com/yuep/base/scheduler/SchedulerExecutorFactory.java" />
+				<include name="com/yuep/base/scheduler/SchedulerExecutorFactoryImpl.java" />
+				<include name="com/yuep/base/scheduler/SchedulerJob.java" />
+				<include name="com/yuep/base/scheduler/SchException.java" />
+			</fileset>
+
+			<packageset dir="${common-core.dir}/src/java" defaultexcludes="yes">
+				<include name="com/yuep/**/def/**" />
+				<include name="com/yuep/**/util/**" />
+			</packageset>
+			
+			<packageset dir="${toolbox.dir}/src/java" defaultexcludes="yes">
+				<include name="com/yuep/base/**/def/**" />
+			</packageset>
+			
+			<fileset dir="${gui-core.dir}/src/java" defaultexcludes="yes">
+				<include name="com/yuep/core/client/component/factroy/decorator/Decorator.java" />
+				<include name="com/yuep/core/client/component/factroy/SwingFactory.java" />
+				<include name="com/yuep/core/client/component/layout/XTableLayout.java" />
+				<include name="com/yuep/core/client/component/calendar/JCalendar.java" />
+				<include name="com/yuep/core/client/component/menu/XMenuBarView.java" />
+				<include name="com/yuep/core/client/component/menu/interpreter/MenuInterpreter.java" />
+				<include name="com/yuep/core/client/component/menu/action/SensitiveAction.java" />
+				<include name="com/yuep/core/client/component/menu/action/AbstractXAction.java" />
+				<include name="com/yuep/core/client/component/menu/action/BussinessAllowable.java" />
+				<include name="com/yuep/core/client/component/menu/action/DefaultPopupMenuAction.java" />
+				<include name="com/yuep/core/client/component/menu/action/InstanceProvider.java" />
+				<include name="com/yuep/core/client/component/menu/action/XAbstractAction.java" />
+				<include name="com/yuep/core/client/component/menu/action/XActionBase.java" />
+				<include name="com/yuep/core/client/component/menu/action/XDeleteAction.java" />
+				<include name="com/yuep/core/client/component/menu/action/AbstractButtonAction.java" />
+				<include name="com/yuep/core/client/component/menu/action/AbstractMainMenuAction.java" />
+				<include name="com/yuep/core/client/component/menu/action/AbstractPopupMenuAction.java" />
+				<include name="com/yuep/core/client/component/navigator/AbstractNavigationController.java" />
+				<include name="com/yuep/core/client/component/navigator/AbstractNavigationModel.java" />
+				<include name="com/yuep/core/client/component/navigator/AbstractNavigationView.java" />
+				<include name="com/yuep/core/client/component/output/OutputManager.java" />
+				<include name="com/yuep/core/client/component/separator/XTitledSeparator.java" />
+				<include name="com/yuep/core/client/component/statusbar/StatusBarCell.java" />
+				<include name="com/yuep/core/client/component/statusbar/StatusModel.java" />
+				<include name="com/yuep/core/client/component/statusbar/view/StatusBarView.java" />
+				<include name="com/yuep/core/client/component/statusbar/view/StatusBarManager.java" />
+				<include name="com/yuep/core/client/component/table/XTable.java" />
+				<include name="com/yuep/core/client/component/table/TableActionHelper.java" />
+				<include name="com/yuep/core/client/component/table/JComponentActionHelper.java" />
+				<include name="com/yuep/core/client/component/toolbar/XToolBarView.java" />
+				<include name="com/yuep/core/client/component/toolbar/interpreter/ToolBarInterpreter.java" />
+				<include name="com/yuep/core/client/component/validate/editor/XEditor.java" />
+				<include name="com/yuep/core/client/component/validate/validator/Validator.java" />
+				<include name="com/yuep/core/client/component/window/WindowManager.java" />
+				<include name="com/yuep/core/client/component/wizard/ContainerWizardView.java" />
+				<include name="com/yuep/core/client/component/wizard/ContainerWizardController.java" />
+				<include name="com/yuep/core/client/component/wizard/BasicWizardController.java" />
+				<include name="com/yuep/core/client/component/wizard/BasicWizardModel.java" />
+				<include name="com/yuep/core/client/component/wizard/BasicWizardView.java" />
+				<include name="com/yuep/core/client/main/process/rsp/Responsibility.java" />
+				<include name="com/yuep/core/client/main/process/Processor.java" />
+				<include name="com/yuep/core/client/module/ClientModule.java" />
+				<include name="com/yuep/core/client/mvc/validate/AbstractValidateView.java" />
+				<include name="com/yuep/core/client/mvc/ClientView.java" />
+				<include name="com/yuep/core/client/mvc/ClientModel.java" />
+				<include name="com/yuep/core/client/mvc/ClientController.java" />
+				<include name="com/yuep/core/client/spring/XI18nResourceBundleMessageSource.java" />
+				<include name="com/yuep/core/client/util/XGuiUtils.java" />
+				<include name="com/yuep/core/client/util/GuiConstants.java" />
+				<include name="com/yuep/core/client/util/DialogUtils.java" />
+				<include name="com/yuep/core/client/ClientCoreContext.java" />
+			</fileset>
+			
+			<packageset dir="${enterprise-app-core.dir}/src/java" defaultexcludes="yes">
+				<include name="com/yuep/core/jmsserver/def/**" />
+				<include name="com/yuep/core/servercore/def/**" />
+				<include name="com/yuep/core/db/**/def/**" />
+			</packageset>
+
+			<packageset dir="${nms-core-definition.dir}/src/java" defaultexcludes="yes">
+				<include name="com/yuep/nms/core/common/**" />
+				<exclude name="com/yuep/nms/core/common/smcore/SmCoreDefinitionModule.java"/>
+				<exclude name="com/yuep/nms/core/common/smmanager/SmManagerDefinitionModule.java"/>
+				<exclude name="com/yuep/nms/core/common/**/module/*Module.java"/>
+				<exclude name="com/yuep/nms/core/common/**/impl/**"/>
+			</packageset>
+			
+			<packageset dir="${server-core.dir}/src/java" defaultexcludes="yes">
+				<include name="com/yuep/nms/core/server/nmsproxy/NmsServiceAdapter.java" />
+				<include name="com/yuep/nms/core/server/nmsproxy/NmsServiceAdapterManager.java" />
+			</packageset>
+			
+			<packageset dir="${client-core.dir}/src/java" defaultexcludes="yes">
+				<include name="com/yuep/nms/core/client/smcore/def/**" />
+			</packageset>
+
+			
+		</javadoc>
+	</target>
+	
+	<target name="jar1package">
+		<delete file="javacode/${jarname}"/>
+		<jar basedir="${src.dir}" index="${manifest.index}"
+				duplicate="${manifest.duplicate}" destfile="javacode/${jarname}"
+				includes="${framework.prefix}/**" excludes="*.svn">
+			<manifest>
+				<attribute name="Vendor" value="${manifest.vendor}" />
+				<attribute name="Built-Time" value="${LOCALTIME}" />
+				<attribute name="Version" value="${manifest.version}" />
+				<attribute name="BuildNumber" value="${manifest.buildnumber}" />
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="jar.src" description="Generate the java code.">
+		<antcall target="jar1package" >
+			<param name="src.dir" value="${toolboxlog.dir}/src/java" />
+			<param name="jarname" value="toolboxlog-src.jar" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="src.dir" value="${bootstrap.dir}/src/java" />
+			<param name="jarname" value="bootstrap-src.jar" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="src.dir" value="${common-base.dir}/src/java" />
+			<param name="jarname" value="common-base-src.jar" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="src.dir" value="${common-core.dir}/src/java" />
+			<param name="jarname" value="common-core-src.jar" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="src.dir" value="${toolbox.dir}/src/java" />
+			<param name="jarname" value="toolbox-src.jar" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="src.dir" value="${gui-core.dir}/src/java" />
+			<param name="jarname" value="client-core-src.jar" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="src.dir" value="${enterprise-app-core.dir}/src/java" />
+			<param name="jarname" value="server-core-src.jar" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="src.dir" value="${nms-core-definition.dir}/src/java" />
+			<param name="jarname" value="nms-core-definition-src.jar" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="src.dir" value="${client-core.dir}/src/java" />
+			<param name="jarname" value="nms-core-client-src.jar" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="src.dir" value="${server-core.dir}/src/java" />
+			<param name="jarname" value="nms-core-server-src.jar" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="src.dir" value="${sbi-core.dir}/src/java" />
+			<param name="jarname" value="nms-core-sbi-src.jar" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="src.dir" value="${nms-biz-definition.dir}/src/java" />
+			<param name="jarname" value="nms-biz-definition-src.jar" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="src.dir" value="${nms-biz-client.dir}/src/java" />
+			<param name="jarname" value="nms-biz-client-src.jar" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="src.dir" value="${nms-biz-server.dir}/src/java" />
+			<param name="jarname" value="nms-biz-server-src.jar" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="src.dir" value="${nms-biz-sbi.dir}/src/java" />
+			<param name="jarname" value="nms-biz-sbi-src.jar" />
+		</antcall>
+	</target>
+
+	<target name="jar.test.src" description="Generate the test java code.">
+			<antcall target="jar1package" >
+				<param name="src.dir" value="${toolboxlog.dir}/src/test" />
+				<param name="jarname" value="test-toolbox-log-src.jar" />
+			</antcall>
+			<antcall target="jar1package" >
+				<param name="src.dir" value="${common-base.dir}/src/test" />
+				<param name="jarname" value="test-common-base-src.jar" />
+			</antcall>
+			<antcall target="jar1package" >
+				<param name="src.dir" value="${bootstrap.dir}/src/test" />
+				<param name="jarname" value="test-bootstrap-src.jar" />
+			</antcall>
+			<antcall target="jar1package" >
+				<param name="src.dir" value="${common-core.dir}/src/test" />
+				<param name="jarname" value="test-common-core-src.jar" />
+			</antcall>
+			<antcall target="jar1package" >
+				<param name="src.dir" value="${toolbox.dir}/src/test" />
+				<param name="jarname" value="test-toolbox-src.jar" />
+			</antcall>
+			<antcall target="jar1package" >
+				<param name="src.dir" value="${gui-core.dir}/src/test" />
+				<param name="jarname" value="test-client-core-src.jar" />
+			</antcall>
+			<antcall target="jar1package" >
+				<param name="src.dir" value="${enterprise-app-core.dir}/src/test" />
+				<param name="jarname" value="test-server-core-src.jar" />
+			</antcall>
+			<antcall target="jar1package" >
+				<param name="src.dir" value="${nms-core-definition.dir}/src/test" />
+				<param name="jarname" value="test-nms-core-definition-src.jar" />
+			</antcall>
+			<antcall target="jar1package" >
+				<param name="src.dir" value="${client-core.dir}/src/test" />
+				<param name="jarname" value="test-nms-core-client-src.jar" />
+			</antcall>
+			<antcall target="jar1package" >
+				<param name="src.dir" value="${server-core.dir}/src/test" />
+				<param name="jarname" value="test-nms-core-server-src.jar" />
+			</antcall>
+			<antcall target="jar1package" >
+				<param name="src.dir" value="${sbi-core.dir}/src/test" />
+				<param name="jarname" value="test-nms-core-sbi-src.jar" />
+			</antcall>
+			<antcall target="jar1package" >
+				<param name="src.dir" value="${nms-biz-definition.dir}/src/test" />
+				<param name="jarname" value="test-nms-biz-definition-src.jar" />
+			</antcall>
+			<antcall target="jar1package" >
+				<param name="src.dir" value="${nms-biz-client.dir}/src/test" />
+				<param name="jarname" value="test-nms-biz-client-src.jar" />
+			</antcall>
+			<antcall target="jar1package" >
+				<param name="src.dir" value="${nms-biz-server.dir}/src/test" />
+				<param name="jarname" value="test-nms-biz-server-src.jar" />
+			</antcall>
+			<antcall target="jar1package" >
+				<param name="src.dir" value="${nms-biz-sbi.dir}/src/test" />
+				<param name="jarname" value="test-nms-biz-sbi-src.jar" />
+			</antcall>
+		</target>
+	
+</project>
+
+

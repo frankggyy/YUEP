@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<mapping>
+	<description>action or function --> permission,1..n</description>
+	
+	<class name="com.yuep.base.xml.ArrayListItems">
+		<map-to xml="categories" />
+		<field name="items" type="com.yuep.nms.core.common.smcore.model.data.PermissionItemCategoryEntry" collection="collection"/>
+	</class>
+	
+	<class name="com.yuep.nms.core.common.smcore.model.data.PermissionItemCategoryEntry">
+		<map-to xml="category" />
+		<field name="categoryId" type="java.lang.String">
+			<bind-xml name="categoryId" node="attribute" location="category"/>
+		</field>
+		<field name="items" type="com.yuep.nms.core.common.smcore.model.data.PermissionItemEntry" collection="collection"/>
+	</class>
+	
+	<class name="com.yuep.nms.core.common.smcore.model.data.PermissionItemEntry">
+		<map-to xml="permission" />
+		<field name="permissionId" type="java.lang.String">
+			<bind-xml name="permissionId" node="attribute" location="permission"/>
+		</field>
+		<field name="actionFunctionsExpress" type="java.lang.String">
+			<bind-xml name="actionFunctionsExpress" node="attribute" location="permission"/>
+		</field>
+	</class>
+
+</mapping>

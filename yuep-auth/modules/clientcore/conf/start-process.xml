@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rsps>
+	<rsp step="1"
+		rspClazz="com.yuep.core.client.main.mainframe.processing.rsp.DefaultCheckLoginInfoRsp" />
+	<rsp step="2"
+		rspClazz="com.yuep.core.client.main.mainframe.processing.rsp.DefaultLoadMenuBarRsp" />
+	<rsp step="3"
+		rspClazz="com.yuep.core.client.main.mainframe.processing.rsp.DefaultLoadToolBarRsp" />
+	<rsp step="4"
+		rspClazz="com.yuep.core.client.main.mainframe.processing.rsp.DefaultOpenMainFrameRsp" />
+</rsps>

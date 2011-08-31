@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+
+<project name="nmsbizserver" default="deploy" basedir=".">
+		<property name="PrjHome" value="." />
+		<property name="BuildProject" value="yuep-build" />
+		<import file="${PrjHome}/../${BuildProject}/support/properties.xml" />
+
+		<property name="FmServer.pkg" value="fmserver.jar" />
+		<property name="PmServer.pkg" value="pmserver.jar" />
+		<property name="TopoServer.pkg" value="toposerver.jar" />
+		<property name="PmServer.pkg" value="pmserver.jar" />
+		<property name="MoExtServer.pkg" value="moextserver.jar" />
+		<property name="DiscoveryServer.pkg" value="discoveryserver.jar" />
+	    <property name="EqmServer.pkg" value="eqmserver.jar" />
+	
+		<property name="FmServerModule" value="fm-server" />
+		<property name="PmServerModule" value="pm-server" />
+		<property name="TopoServerModule" value="topo-server" />
+		<property name="MoExtServerModule" value="moext-server" />
+		<property name="DiscoveryServerModule" value="discovery-server" />
+	    <property name="EqmServerModule" value="eqm-server" />
+	
+			<property name="dest" value="${PrjHome}/nms-biz-server-classes" />
+			<property name="deploy" value="${PrjHome}/lib/${product}" />
+			<property name="NmsBizServerSrc" value="${PrjHome}/src/java" />
+
+			<target name="mkdir">
+				<mkdir dir="${dest}" />
+				<mkdir dir="${deploy}" />
+			</target>
+
+			<target depends="mkdir" name="make">
+				<javac bootclasspathref="project.class.path" encoding="${javac.encoding}" 
+					debug="${javac.debug}" debuglevel="${javac.debuglevel}" 
+					optimize="${javac.optimize}" deprecation="${javac.deprecation}" 
+					nowarn="${javac.nowarn}" source="${javac.source}" 
+					target="${javac.target}" listfiles="${javac.listfiles}" 
+					fork="${javac.fork}" includeAntRuntime="${javac.includeAntRuntime}" 
+					includeJavaRuntime="${javac.includeJavaRuntime}" destdir="${dest}" 
+					includes="${nms.biz.server.prefix}/**">
+
+					<src path="${NmsBizServerSrc}" />
+					<compilerarg value="-J-Duser.language=en" />
+				</javac>
+			</target>
+
+			<target name="clean">
+				<delete failonerror="false" includeemptydirs="true">
+					<fileset dir="${deploy}" />
+				</delete>
+				<delete failonerror="false" includeemptydirs="true">
+					<fileset dir="${dest}" />
+				</delete>
+			</target>
+				
+			<target name="copy_src_conf_file">
+				<copy todir="${dest}">
+					<fileset dir="${NmsBizServerSrc}/">
+						<include name="**/*.*" />
+						<exclude name="**/*.java" />
+					</fileset>
+				</copy>
+			</target>
+				
+			<target name="jar1package">
+				<jar basedir="${dest}" index="${manifest.index}"
+						duplicate="${manifest.duplicate}" destfile="${deploy}/${jarname}"
+						includes="${nms.biz.server.prefix}/${packagename}/**">
+						<manifest>
+							<attribute name="Vendor" value="${manifest.vendor}" />
+							<attribute name="Built-Time" value="${LOCALTIME}" />
+							<attribute name="Version" value="${manifest.version}" />
+							<attribute name="BuildNumber" value="${manifest.buildnumber}" />
+						</manifest>
+				</jar>
+			</target>
+				
+				<target depends="clean,make,copy_src_conf_file" name="jar">
+					<antcall target="jar1package" >
+						<param name="jarname" value="${FmServer.pkg}" />
+						<param name="packagename" value="fm" />
+					</antcall>
+					<antcall target="jar1package" >
+						<param name="jarname" value="${PmServer.pkg}" />
+						<param name="packagename" value="pm" />
+					</antcall>
+					<antcall target="jar1package" >
+						<param name="jarname" value="${TopoServer.pkg}" />
+						<param name="packagename" value="topo" />
+					</antcall>
+					<antcall target="jar1package" >
+						<param name="jarname" value="${DiscoveryServer.pkg}" />
+						<param name="packagename" value="discovery" />
+					</antcall>
+					<antcall target="jar1package" >
+						<param name="jarname" value="${MoExtServer.pkg}" />
+						<param name="packagename" value="moext" />
+					</antcall>
+					<antcall target="jar1package" >
+						<param name="jarname" value="${EqmServer.pkg}" />
+						<param name="packagename" value="eqm" />
+					</antcall>
+				</target>
+				
+				<target name="copy_files">
+					<!--<copy tofile="${runenv.dir}/modules/${FmServerModule}/lib/${FmServer.pkg}" file="${deploy}/${FmServer.pkg}" overwrite="true"/>-->
+					<!--<copy tofile="${runenv.dir}/modules/${PmServerModule}/lib/${PmServer.pkg}" file="${deploy}/${PmServer.pkg}" overwrite="true"/>-->
+					<!--<copy tofile="${runenv.dir}/modules/${TopoServerModule}/lib/${TopoServer.pkg}" file="${deploy}/${TopoServer.pkg}" overwrite="true"/>-->
+					<!--<copy tofile="${runenv.dir}/modules/${MoExtServerModule}/lib/${MoExtServer.pkg}" file="${deploy}/${MoExtServer.pkg}" overwrite="true"/>-->
+					<!--<copy tofile="${runenv.dir}/modules/${DiscoveryServerModule}/lib/${DiscoveryServer.pkg}" file="${deploy}/${DiscoveryServer.pkg}" overwrite="true"/>-->
+					<copy tofile="${runenv.dir}/modules/${EqmServerModule}/lib/${EqmServer.pkg}" file="${deploy}/${EqmServer.pkg}" overwrite="true"/>
+				</target>
+						
+				<target depends="jar,copy_files" name="deploy" />
+
+</project>

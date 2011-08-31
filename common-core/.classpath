@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="src" path="src/sample"/>
+	<classpathentry kind="src" path="src/test"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/common-base"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/bootstrap"/>
+	<classpathentry exported="true" kind="lib" path="lib/jms/jms.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jms/jta.jar"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>

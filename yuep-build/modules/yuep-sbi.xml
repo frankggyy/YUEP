@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<system-param>
+		<property name="rmi.port" value="8889" />
+		<property name="loggerConfigLocation" value="bootstrap/conf/logback-sbi.xml" />
+		<property name="defaultLoggerName" value="servercore" />
+	</system-param>
+	
+	<modules>
+		<module name="servercore" moduleClass="com.yuep.core.servercore.impl.ServerCoreModule" 
+		 publicJars="yuep/commonbase.jar,yuep/commoncore.jar,spring,jms,quartz,joram">
+			<property name="configLocations" value="classpath*:conf/appctx.xml" />
+			<property name="jms.port" value="16010" />
+			<property name="jms.naming.port" value="16400" />
+			<property name="java.naming.factory.initial" value="fr.dyade.aaa.jndi2.client.NamingContextFactory"/>
+		</module>
+		
+		<module name="jmsserver" moduleClass="com.yuep.core.jmsserver.impl.JmsServerModule" depends="servercore">
+			<property name="jms.server.launch" value="true" />
+			<property name="jms.manager.class" value="com.yuep.core.jmsserver.impl.joram.JoramManagerImpl"/>
+		</module>
+		
+		<module name="nmsbase" moduleClass="com.yuep.nms.core.common.base.impl.NmsBaseModule">
+		</module>
+		
+		<module name="mocore-common" moduleClass="com.yuep.nms.core.common.mocore.module.MoCoreModule" depends="nmsbase">
+		</module>
+		
+		<module name="sbi" moduleClass="com.yuep.nms.core.common.sbi.module.SbiModule" depends="jmsserver,mocore-common"/>
+		
+		<module name="sbicore" moduleClass="com.yuep.nms.core.sbi.SbiCoreModule" publicJars="adventnet" depends="sbi"/>
+		
+		<module name="sbi-common" moduleClass="com.yuep.nms.biz.common.sbi.SbiInfEqmModule" depends="sbicore"/>
+		
+		<module name="eqm-sbi" moduleClass="com.yuep.nms.biz.sbi.eqm.SbiEqmModule" depends="sbi-common"/>
+		
+	</modules>
+</config>

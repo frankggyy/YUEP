@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<mapping>
+	<description>sbi ping param</description>
+	
+	<class name="com.yuep.base.xml.ArrayListItems">
+		<map-to xml="sbi-ping-params" />
+		<field name="items" type="com.yuep.nms.core.common.sbi.vo.SbiPingParameter" collection="collection"/>
+	</class>
+	
+	<class name="com.yuep.nms.core.common.sbi.vo.SbiPingParameter">
+		<map-to xml="param" />
+		<field name="deviceType" type="java.lang.String">
+			<bind-xml name="deviceType" node="attribute" location="param"/>
+		</field>
+		<field name="pingFrequency" type="long">
+			<bind-xml name="pingFrequency" node="attribute" location="param"/>
+		</field>
+		<field name="retryNum" type="int">
+			<bind-xml name="retryNum" node="attribute" location="param"/>
+		</field>
+	</class>
+
+</mapping>

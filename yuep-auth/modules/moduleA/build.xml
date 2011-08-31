@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="moduleA" basedir="." default="all">
+    <import file="../../common.xml" />
+
+    <property name="dir.moduleA-api" value="../moduleA-api" />
+
+    <path id="cp.depends">
+        <fileset dir="${dir.moduleA-api}/lib" includes="**/*.jar" />
+    </path>
+
+    <path id="classpath">
+        <path refid="cp.container" />
+        <path refid="cp.common" />
+        <path refid="cp.depends" />
+    </path>
+
+    <target name="compile">
+        <module-javac />
+    </target>
+
+    <target name="jar" depends="compile">
+        <module-jar />
+    </target>
+
+    <target name="all" depends="clean,jar" />
+
+</project>

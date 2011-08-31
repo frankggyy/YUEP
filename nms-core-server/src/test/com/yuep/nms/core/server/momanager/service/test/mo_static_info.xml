@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<MoModel>
+	<Mo type="nm" kind="nm" subkind="nm">
+		<SubMo acceptedKind="group,domain,ne" />
+    </Mo>
+
+	<Mo type="group" kind="group" subkind="group">
+		<SubMo acceptedKind="ne" />
+	</Mo>
+	<Mo type="domain" kind="domain" subkind="domain">
+		<SubMo acceptedKind="nm,group,domain" />
+	</Mo>
+
+	<Mo type="C8000" subkind ="eponoltne" kind="ne" subRange="1-14">
+	</Mo>
+	
+	<Mo type="LPU" subkind ="eponoltne" kind="card" subRange="1-14">
+	</Mo>
+	
+</MoModel>

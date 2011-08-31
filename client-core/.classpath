@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="src" path="src/test"/>
+	<classpathentry kind="src" path="src/sample"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/common-base"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/common-core"/>
+	<classpathentry exported="true" kind="lib" path="lib/twaver/twaver-3.0.jar"/>
+	<classpathentry kind="lib" path="lib/looks/looks-2.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/looks/substance.jar"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>

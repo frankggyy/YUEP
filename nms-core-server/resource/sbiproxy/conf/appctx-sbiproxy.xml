@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<bean id="sbiProxyService" class="com.yuep.nms.core.server.sbiproxy.impl.SbiProxyServiceImpl" autowire="byName"/>
+	
+	<bean id="sbiElementDao" class="com.yuep.nms.core.server.sbiproxy.dao.impl.SbiElementDaoImpl"/>
+	<bean id="sbiMgrRepository" class="com.yuep.nms.core.server.sbiproxy.impl.SbiMgrRepository" autowire="byName"/>
+	
+	<bean id="sbiSessionCheckJob" class="com.yuep.nms.core.server.sbiproxy.session.SbiSessionCheckJob" autowire="byName">
+		<constructor-arg value="5" type="int" />
+	</bean>
+	
+	<bean id="neRouteTable" class="com.yuep.nms.core.server.sbiproxy.impl.NeRouteTable"/>
+	<bean id="sbiMgrLocator" class="com.yuep.nms.core.server.sbiproxy.impl.SbiMgrLocator"/>
+	
+	<bean id="sbiStateTable" class="com.yuep.nms.core.server.sbiproxy.session.SbiStateTable"/>
+	
+	<bean id="sbiProxyAdvice" class="com.yuep.nms.core.server.sbiproxy.impl.SbiProxyAdvice" autowire="byName"/>
+	<bean id="sbiProxyAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="advice" ref="sbiProxyAdvice"/>
+		<property name="pattern" value=".*"/>
+	</bean>
+	
+	<bean id="sbiProxyNeStateListener" class="com.yuep.nms.core.server.sbiproxy.impl.SbiProxyNeStateListener" autowire="byName"/>
+	<bean id="deviceNameThreadLocal" class="com.yuep.nms.core.server.sbiproxy.impl.DeviceNameThreadLocal"/>
+	 
+	<bean id="sbiSysMgr" factory-bean="sbiProxyService" factory-method="getSbiMgrOrAdaptor" lazy-init="true">
+		<constructor-arg type="java.lang.String" value="com.yuep.nms.core.common.sbi.interfaces.SbiSysMgr"/>
+	</bean>
+	
+	<bean id="messageSbiStateListener" class="com.yuep.nms.core.server.sbiproxy.session.MessageSbiStateListener" autowire="byName"/>
+	
+</beans>

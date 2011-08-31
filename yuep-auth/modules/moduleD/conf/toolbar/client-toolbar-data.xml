@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolbar>
+    <button clazz="com.whnec.yuep.cases.action.MessageAction" icon="message.png"
+        rolloverIcon="message_rollover.png" toolTip="a.menu.message"/>
+</toolbar>

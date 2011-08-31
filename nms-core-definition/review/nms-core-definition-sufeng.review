@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Review id="nms-core-definition">
+    <ReviewIssue id="GGEMQDZ1">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:30:52:093 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 11:22:17:984 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>sufeng</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="40">src/java/com/yuep/nms/core/common/sm/bo/object/Domain.java</File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>命名更更改，Domain无法明确表达这个对象本身代表的意义</Summary>
+        <Description>Domain
+
+如果表达的是管理范围，建议就叫ManagedScope</Description>
+        <Annotation></Annotation>
+        <Revision></Revision>
+        <Resolution>item.resolution.label.validDuplicate</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGEMSIQI">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:32:31:578 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 13:04:43:031 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>sufeng</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="32">src/java/com/yuep/nms/core/common/sm/bo/object/Domain.java</File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>BO类都需要加java doc的注释，这里description为空</Summary>
+        <Description> * Description:</Description>
+        <Annotation>添加了注释</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGEMU0JK">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:33:41:312 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:34:09:781 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>sufeng</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="71">src/java/com/yuep/nms/core/common/sm/bo/object/Domain.java</File>
+        <Type>item.type.label.programLogic</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>我们一直用MoNaming，不要使用String</Summary>
+        <Description>    private List&lt;String&gt; managedObjects;</Description>
+        <Annotation></Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGEMUTL5">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:34:18:953 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 13:05:25:218 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>sufeng</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="72">src/java/com/yuep/nms/core/common/sm/bo/object/Domain.java</File>
+        <Type>item.type.label.optimization</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>这里annotation没有必要</Summary>
+        <Description>	@Column(name = "DESCRIPTION")</Description>
+        <Annotation>去掉了不必要的注释</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGEN0KG6">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:38:47:046 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 13:43:32:671 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>sufeng</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="40">src/java/com/yuep/nms/core/common/sm/bo/object/Domain.java</File>
+        <Type>item.type.label.optimization</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>这类标注没必要</Summary>
+        <Description>@Table(name = "SC_DOMAIN")</Description>
+        <Annotation></Annotation>
+        <Revision></Revision>
+        <Resolution>item.resolution.label.validDuplicate</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGEN2003">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:39:53:859 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 13:45:10:875 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>sufeng</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="78">src/java/com/yuep/nms/core/common/sm/bo/principal/User.java</File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>全部去掉</Summary>
+        <Description>	@Column(name="EXPIRE_TIME")</Description>
+        <Annotation>去掉不必要的注释</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGEN3CUC">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:40:57:156 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 13:02:14:703 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>sufeng</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="30">src/java/com/yuep/nms/core/common/sm/bo/principal/UserStatus.java</File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>不能直接在代码中用中文</Summary>
+        <Description>"激活"</Description>
+        <Annotation>对枚举常量的中文描述已经不在中文里边编码描述</Annotation>
+        <Revision></Revision>
+        <Resolution>item.resolution.label.validDuplicate</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGEN3YED">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:41:25:093 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 13:43:10:656 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>sufeng</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="29">src/java/com/yuep/nms/core/common/sm/bo/principal/UserStatus.java</File>
+        <Type>item.type.label.programLogic</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>请用标准的enum</Summary>
+        <Description>public enum UserStatus implements EnumValue </Description>
+        <Annotation></Annotation>
+        <Revision></Revision>
+        <Resolution>item.resolution.label.validWontfix</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGEN4PI2">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:42:00:218 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 13:42:44:890 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>sufeng</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="46">src/java/com/yuep/nms/core/common/sm/bo/rbac/Role.java</File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>rbac的名称没几个人能清楚其意思，请修改为一个通俗一点的名字</Summary>
+        <Description>public class Role extends Bo implements Principal {</Description>
+        <Annotation>改成role</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGEN5W95">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:42:55:625 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 13:42:11:828 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>sufeng</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="37">src/java/com/yuep/nms/core/common/sm/bo/Acp.java</File>
+        <Type>item.type.label.programLogic</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>不知道干嘛用</Summary>
+        <Description>public class Acp extends TargetObject {</Description>
+        <Annotation>这个类已经不要了</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGEN6LVV">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:43:28:843 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 13:41:55:093 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>sufeng</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="36">src/java/com/yuep/nms/core/common/sm/bo/Label.java</File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>这个类名太大众了，无法明确表达其真正含义</Summary>
+        <Description>public class Label extends Bo implements Certificate {</Description>
+        <Annotation>这个类已经不要了</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGEN78W0">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:43:58:656 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 13:41:32:359 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>sufeng</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="32">src/java/com/yuep/nms/core/common/sm/bo/Module.java</File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>请不用这个类名，容易与common core里面的类名冲突</Summary>
+        <Description>public class Module extends Bo {</Description>
+        <Annotation></Annotation>
+        <Revision></Revision>
+        <Resolution>item.resolution.label.validFixlater</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGEN87DB">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:44:43:343 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 13:41:03:578 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>sufeng</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="45">src/java/com/yuep/nms/core/common/sm/bo/Group.java</File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>请更换名称，这个容易与拓扑、 MO、twaver中的组重叠，这个命名就是权限组，叫PermissionGroup也行呀</Summary>
+        <Description>public class Group extends Bo {</Description>
+        <Annotation>名字更改成PermissionGroup</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGEN9KPD">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:45:47:281 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 13:40:23:562 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>sufeng</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="48">src/java/com/yuep/nms/core/common/sm/bo/Session.java</File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>与common core中的session重名，请换名字</Summary>
+        <Description>public class Session extends Bo {</Description>
+        <Annotation>这个SESSION 直接不要了</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGENBB3G">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:47:08:140 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 13:37:04:140 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>sufeng</ReviewerId>
+        <AssignedTo></AssignedTo>
+        <File line="32">src/java/com/yuep/nms/core/common/sm/interfaces/UserLoginData.java</File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>这个不是interface</Summary>
+        <Description>public class UserLoginData</Description>
+        <Annotation>这个最初是要随接口一起发布的， 是接口的一部分。 现在已把它放到comm包里边去了</Annotation>
+        <Revision></Revision>
+        <Resolution>item.resolution.label.validDuplicate</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGENBT88">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:47:31:640 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 13:36:29:531 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>sufeng</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="35">src/java/com/yuep/nms/core/common/sm/interfaces/SmService.java</File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>看起来，这个接口没什么用，不是都分到userservice,roleservice里面去了吗</Summary>
+        <Description>public interface SmService extends BaseService {</Description>
+        <Annotation>这个接口经过细化</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+</Review>

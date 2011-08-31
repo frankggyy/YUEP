@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<mapping>
+	<description>sbi groups</description>
+	
+	<class name="com.yuep.base.xml.ArrayListItems">
+		<map-to xml="sbis" />
+		<field name="items" type="com.yuep.nms.core.common.sbiproxy.vo.SbiElement" collection="collection">
+			<bind-xml name="sbi"/>
+		</field>
+	</class>
+	
+	<class name="com.yuep.nms.core.common.sbiproxy.vo.SbiElement">
+		<field name="sbiKey" type="java.lang.String">
+			<bind-xml name="sbiKey" node="attribute" location="sbi"/>
+		</field>
+		<field name="physicalDomain" type="java.lang.String">
+			<bind-xml name="physicalDomain" node="attribute" location="sbi"/>
+		</field>
+		<field name="description" type="java.lang.String">
+			<bind-xml name="description" node="attribute" location="sbi"/>
+		</field>
+		<field name="sbiIp" type="java.lang.String">
+			<bind-xml name="sbiIp" node="attribute" location="sbi"/>
+		</field>
+		<field name="sbiPort" type="java.lang.String">
+			<bind-xml name="sbiPort" node="attribute" location="sbi"/>
+		</field>
+		<field name="standbySbiKey" type="java.lang.String">
+			<bind-xml name="standbySbiKey" node="attribute" location="sbi"/>
+		</field>
+		<field name="defaultSbi" type="java.lang.Boolean">
+			<bind-xml name="defaultSbi" node="attribute" location="sbi"/>
+		</field>
+		<field name="mgmtIpScopeInXml" type="java.lang.String">
+			<bind-xml name="mgmtIpScopeInXml" node="attribute" location="sbi"/>
+		</field>
+	</class>
+	
+</mapping>

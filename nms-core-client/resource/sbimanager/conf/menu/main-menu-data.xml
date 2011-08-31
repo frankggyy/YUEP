@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menus>
+	<menu name="sbimanager" text="sbimanager.menu" mnemonic="I">
+		<menu-item clazz="com.yuep.nms.core.client.sbimanager.action.OpenSbiManagerViewAction"
+			text="sbi.manager" mnemonic="M" icon="system.png"/>
+	</menu>
+</menus>
+

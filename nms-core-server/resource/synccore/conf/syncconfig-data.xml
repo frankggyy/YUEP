@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<syncconfig>
+	<node name="nm.mo" nodeType="mo" syncAction="nmsMoSync" requested="true">
+		<includes>nm</includes>
+	</node>
+</syncconfig>

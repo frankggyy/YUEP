@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolbar>
+    <button clazz="com.yuep.core.client.main.mainframe.action.system.SystemExitAction" icon="exit.png"
+        rolloverIcon="exit_rollover.png" toolTip="common.mainframe.toolbar.tooltip.exit"/>
+</toolbar>

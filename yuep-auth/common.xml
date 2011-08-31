@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+    <!-- properties for build -->
+    <property environment="env" />
+    <property name="dir.build" value="${basedir}/build" />
+    <property name="dir.build.classes" value="${dir.build}/classes" />
+    <property name="dir.src" value="${basedir}/src/java" />
+    <property name="dir.lib" value="${basedir}/lib" />
+
+    <!-- properties of jar -->
+    <property name="manifest.vendor" value="www.whnec.com.cn" />
+    <property name="manifest.version" value="v1.0" />
+    <property name="manifest.buildnumber" value="1" />
+    <tstamp description="Time stamp of current time">
+        <format property="LOCALTIME"
+                pattern="MM/dd/yyyy hh:mm aa"
+                unit="hour"
+                locale="en" />
+    </tstamp>
+
+    <path id="cp.container">
+        <fileset dir="{basedir}/../../../bootstrap/lib" includes="**/*.jar" />
+    </path>
+    <path id="cp.common">
+        <fileset dir="{basedir}/../../lib" includes="**/*.jar" />
+    </path>
+    <path id="cp.module">
+        <fileset dir="${dir.lib}" includes="**/*.jar" />
+    </path>
+
+    <macrodef name="module-javac" description="javac target for module">
+        <attribute name="srcdir" default="${dir.src}" />
+        <attribute name="classpathref" default="classpath" />
+        <attribute name="destdir" default="${dir.build.classes}" />
+        <attribute name="encoding" default="GBK" />
+        <attribute name="debug" default="true" />
+        <attribute name="debuglevel" default="lines,vars,source" />
+        <attribute name="optimize" default="off" />
+        <attribute name="deprecation" default="off" />
+        <attribute name="nowarn" default="false" />
+        <attribute name="source" default="1.6" />
+        <attribute name="target" default="1.6" />
+        <attribute name="listfiles" default="yes" />
+        <attribute name="fork" default="yes" />
+        <attribute name="includeantruntime" default="yes" />
+        <attribute name="includejavaruntime" default="yes" />
+        <attribute name="jdk.home" default="${env.JAVA_HOME}" />
+        <element name="includes-excludes"
+                 optional="yes"
+                 implicit="yes"
+                 description="include and exclude elements" />
+        <sequential>
+            <echo level="info"
+                  message="====== Compiling Module:${ant.project.name} with JDK v@{source} ======" />
+            <mkdir dir="@{destdir}" />
+            <javac srcdir="@{srcdir}"
+                   destdir="@{destdir}"
+                   classpathref="@{classpathref}"
+                   encoding="@{encoding}"
+                   debug="@{debug}"
+                   debuglevel="@{debuglevel}"
+                   optimize="@{optimize}"
+                   deprecation="@{deprecation}"
+                   nowarn="@{nowarn}"
+                   source="@{source}"
+                   target="@{target}"
+                   listfiles="@{listfiles}"
+                   fork="@{fork}"
+                   includeantruntime="@{includeantruntime}"
+                   includejavaruntime="@{includejavaruntime}"
+                   executable="@{jdk.home}/bin/javac.exe">
+                <includes-excludes />
+            </javac>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="module-jar" description="jar target for module">
+        <attribute name="message"
+                   default="====== Packaging Module:${ant.project.name} ======" />
+        <attribute name="basedir" default="${dir.build.classes}" />
+        <attribute name="destfile"
+                   default="${dir.lib}/${ant.project.name}.jar" />
+        <attribute name="includes" default="**" />
+        <attribute name="excludes" default="**/*.java" />
+        <attribute name="index" default="true" />
+        <attribute name="duplicate" default="fail" />
+        <element name="appends"
+                 optional="yes"
+                 implicit="yes"
+                 description="Append fileset to jar" />
+        <sequential>
+            <echo level="info" message="@{message}" />
+            <mkdir dir="${dir.lib}" />
+            <jar basedir="@{basedir}"
+                 index="@{index}"
+                 duplicate="@{duplicate}"
+                 destfile="@{destfile}"
+                 includes="@{includes}"
+                 excludes="@{excludes}">
+                <manifest>
+                    <attribute name="Vendor" value="${manifest.vendor}" />
+                    <attribute name="Built-Time" value="${LOCALTIME}" />
+                    <attribute name="Version" value="${manifest.version}" />
+                    <attribute name="BuildNumber"
+                               value="${manifest.buildnumber}" />
+                </manifest>
+                <appends />
+            </jar>
+        </sequential>
+    </macrodef>
+
+    <target name="clean">
+        <delete dir="${dir.build}" />
+    </target>
+
+</project>

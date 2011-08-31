@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="moduleA-api" basedir="." default="all">
+    <import file="../../common.xml" />
+
+    <path id="classpath">
+        <path refid="cp.container" />
+        <path refid="cp.common" />
+    </path>
+
+    <target name="compile">
+        <module-javac />
+    </target>
+
+    <target name="jar" depends="compile">
+        <module-jar />
+    </target>
+
+    <target name="all" depends="clean,jar" />
+
+</project>

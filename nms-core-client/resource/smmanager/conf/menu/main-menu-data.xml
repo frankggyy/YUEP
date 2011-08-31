@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menus>
+	<menu name="smmanager" text="smmanager.menu" mnemonic="s">
+		<menu-item clazz="com.yuep.nms.core.client.smmanager.action.OpenUserManagerAction"
+			text="smmanager.user" mnemonic="u"/>
+		<menu-item clazz="com.yuep.nms.core.client.smmanager.action.OpenRoleManagerAction"
+			text="smmanager.rolemanager" mnemonic="r"/>
+		<menu-item clazz="com.yuep.nms.core.client.smmanager.action.OpenOperationLogAction"
+			text="smmanager.oplog" mnemonic="o"/>
+		<menu-item clazz="com.yuep.nms.core.client.smmanager.action.OpenOnlineUserAction"
+			text="smmanager.onlineuser" mnemonic="l"/>
+	</menu>
+	<menu name="system" text="common.mainframe.menu.system" mnemonic="s">
+		<menu-item/>
+		<menu-item clazz="com.yuep.nms.core.client.smmanager.action.ModifySelfPasswordOpenAction"
+			text="smmanager.modifyselfpassword"/>	
+		<menu-item clazz="com.yuep.nms.core.client.smmanager.action.UnlockClientOpenAction"
+			text="smmanager.lockclient" mnemonic="L"/>
+	</menu>
+</menus>
+

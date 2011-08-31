@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+
+<project name="nmscoredefinition" default="deploy" basedir=".">
+	
+	<property name="PrjHome" value="." />
+	<property name="BuildProject" value="yuep-build" />
+	<import file="${PrjHome}/../${BuildProject}/support/properties.xml" />
+
+	<property name="NmsCoreDef.pkg" value="nmscoredef.jar" />
+	<property name="MoDef.pkg" value="modef.jar" />
+	<property name="SbiDef.pkg" value="sbidef.jar" />
+	<property name="SbiProxyDef.pkg" value="sbiproxydef.jar" />	
+	<property name="NmsBase.pkg" value="nmsbase.jar" />
+	
+	<property name="NmsBaseModule" value="nmsbase" />
+	
+	<property name="MoCoreDef.pkg" value="mocoredef.jar" />
+	<property name="MoCoreDefModule" value="mocore-common" />
+	<property name="MoManagerDef.pkg" value="momanagerdef.jar" />
+	<property name="MoManagerDefModule" value="momanager-common" />
+	
+	<property name="SubSystemProxyCoreDef.pkg" value="subsystemproxycoredef.jar" />
+	<property name="SubSystemProxyCoreDefModule" value="subsystemproxycore-common" />
+	
+	<property name="SyncCoreDef.pkg" value="synccoredef.jar" />
+	<property name="SyncCoreDefModule" value="synccore-common" />
+	
+	<property name="SyncManagerDef.pkg" value="syncmanagerdef.jar" />
+	<property name="SyncManagerDefModule" value="syncmanager-common" />
+	
+	<property name="SmCoreDef.pkg" value="smcoredef.jar" />
+	<property name="SmCoreDefModule" value="smcore-common" />
+	<property name="SmManagerDef.pkg" value="smmanagerdef.jar" />
+	<property name="SmManagerDefModule" value="smmanager-common" />
+	
+	<property name="SbiManagerDef.pkg" value="sbimanagerdef.jar" />
+	<property name="SbiManagerDefModule" value="sbimanager-common" />
+	
+	<property name="dest" value="${PrjHome}/nms-core-def-classes" />
+	<property name="deploy" value="${PrjHome}/lib/${product}" />
+	<property name="NmsCoreDefSrc" value="${PrjHome}/src/java" />
+
+	<target name="mkdir">
+		<mkdir dir="${dest}" />
+		<mkdir dir="${deploy}" />
+	</target>
+
+	<target depends="mkdir" name="make">
+		<javac bootclasspathref="project.class.path" encoding="${javac.encoding}" 
+			debug="${javac.debug}" debuglevel="${javac.debuglevel}" 
+			optimize="${javac.optimize}" deprecation="${javac.deprecation}" 
+			nowarn="${javac.nowarn}" source="${javac.source}" 
+			target="${javac.target}" listfiles="${javac.listfiles}" 
+			fork="${javac.fork}" includeAntRuntime="${javac.includeAntRuntime}" 
+			includeJavaRuntime="${javac.includeJavaRuntime}" destdir="${dest}" 
+			includes="${nms.core.def.prefix}/**">
+
+			<src path="${NmsCoreDefSrc}" />
+			<compilerarg value="-J-Duser.language=en" />
+		</javac>
+	</target>
+
+	<target name="clean">
+		<delete failonerror="false" includeemptydirs="true">
+			<fileset dir="${deploy}" />
+		</delete>
+		<delete failonerror="false" includeemptydirs="true">
+			<fileset dir="${dest}" />
+		</delete>
+	</target>
+	
+	<target name="copy_src_conf_file">
+		<copy todir="${dest}">
+			<fileset dir="${NmsCoreDefSrc}/">
+				<include name="**/*.*" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="jar1package">
+		<jar basedir="${dest}" index="${manifest.index}"
+			duplicate="${manifest.duplicate}" destfile="${deploy}/${jarname}"
+			includes="${nms.core.def.prefix}/${packagename}/**">
+			<manifest>
+				<attribute name="Vendor" value="${manifest.vendor}" />
+				<attribute name="Built-Time" value="${LOCALTIME}" />
+				<attribute name="Version" value="${manifest.version}" />
+				<attribute name="BuildNumber" value="${manifest.buildnumber}" />
+			</manifest>
+		</jar>
+	</target>
+	
+	<target depends="clean,make,copy_src_conf_file" name="jar">
+		<antcall target="jar1package" >
+			<param name="jarname" value="${MoDef.pkg}" />
+			<param name="packagename" value="mo" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="jarname" value="${SubSystemProxyCoreDef.pkg}" />
+			<param name="packagename" value="subsystemproxycore" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="jarname" value="${NmsBase.pkg}" />
+			<param name="packagename" value="base" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="jarname" value="${SbiDef.pkg}" />
+			<param name="packagename" value="sbi" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="jarname" value="${SbiProxyDef.pkg}" />
+			<param name="packagename" value="sbiproxy" />
+		</antcall>
+		<antcall target="jar1package" >
+				<param name="jarname" value="${MoCoreDef.pkg}" />
+				<param name="packagename" value="mocore" />
+		</antcall>	
+		<antcall target="jar1package" >
+				<param name="jarname" value="${SyncCoreDef.pkg}" />
+				<param name="packagename" value="synccore" />
+		</antcall>	
+		<antcall target="jar1package" >
+				<param name="jarname" value="${SyncManagerDef.pkg}" />
+				<param name="packagename" value="syncmanager" />
+		</antcall>
+		<antcall target="jar1package" >
+				<param name="jarname" value="${MoManagerDef.pkg}" />
+				<param name="packagename" value="momanager" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="jarname" value="${SmCoreDef.pkg}" />
+			<param name="packagename" value="smcore" />
+		</antcall>	
+		<antcall target="jar1package" >
+			<param name="jarname" value="${SmManagerDef.pkg}" />
+			<param name="packagename" value="smmanager" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="jarname" value="${SbiManagerDef.pkg}" />
+			<param name="packagename" value="sbimanager" />
+		</antcall>
+	</target>
+	
+	<target name="copy_files">
+		<copy tofile="${runenv.dir}/modules/${NmsBaseModule}/lib/${NmsBase.pkg}" file="${deploy}/${NmsBase.pkg}" overwrite="true"/>
+		
+		<copy tofile="${runenv.dir}/modules/${MoCoreDefModule}/lib/${MoCoreDef.pkg}" file="${deploy}/${MoCoreDef.pkg}" overwrite="true"/>
+		
+		<copy tofile="${runenv.dir}/modules/${SubSystemProxyCoreDefModule}/lib/${SubSystemProxyCoreDef.pkg}" file="${deploy}/${SubSystemProxyCoreDef.pkg}" overwrite="true"/>
+		
+		<copy tofile="${runenv.dir}/modules/${MoManagerDefModule}/lib/${MoManagerDef.pkg}" file="${deploy}/${MoManagerDef.pkg}" overwrite="true"/>
+
+		<copy tofile="${runenv.dir}/modules/${SmCoreDefModule}/lib/${SmCoreDef.pkg}" file="${deploy}/${SmCoreDef.pkg}" overwrite="true"/>
+		<copy tofile="${runenv.dir}/modules/${SmManagerDefModule}/lib/${SmManagerDef.pkg}" file="${deploy}/${SmManagerDef.pkg}" overwrite="true"/>
+		
+		<copy tofile="${runenv.dir}/modules/${SbiManagerDefModule}/lib/${SbiManagerDef.pkg}" file="${deploy}/${SbiManagerDef.pkg}" overwrite="true"/>
+		
+		<copy tofile="${runenv.dir}/modules/sbiproxy/lib/${SbiProxyDef.pkg}" file="${deploy}/${SbiProxyDef.pkg}" overwrite="true"/>
+		<copy tofile="${runenv.dir}/modules/sbiproxy/lib/${SbiDef.pkg}" file="${deploy}/${SbiDef.pkg}" overwrite="true"/>
+		
+		<copy tofile="${runenv.dir}/modules/${SyncCoreDefModule}/lib/${SyncCoreDef.pkg}" file="${deploy}/${SyncCoreDef.pkg}" overwrite="true"/>
+		<copy tofile="${runenv.dir}/modules/${SyncManagerDefModule}/lib/${SyncManagerDef.pkg}" file="${deploy}/${SyncManagerDef.pkg}" overwrite="true"/>
+		
+		<copy tofile="${runenv.dir}/modules/sbi/lib/${SbiDef.pkg}" file="${deploy}/${SbiDef.pkg}" overwrite="true"/>
+	</target>
+			
+	<target depends="jar,copy_files" name="deploy" />
+
+</project>

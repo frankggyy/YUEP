@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+
+<project name="all.build" default="all" basedir=".">
+	<import file="properties.xml" />
+
+	<property name="toolboxlog.dir"  value="${PrjHome}/../toolbox-log" />
+	<property name="bootstrap.dir"  value="${PrjHome}/../bootstrap" />
+	<property name="commonbase.dir" value="${PrjHome}/../common-base" />
+	<property name="commoncore.dir" value="${PrjHome}/../common-core" />
+	<property name="clientcore.dir" value="${PrjHome}/../client-core" />
+	<property name="servercore.dir" value="${PrjHome}/../cserver-core" />
+	<property name="toolbox.dir"    value="${PrjHome}/../toolbox-module" />
+	
+	<property name="nmscoredef.dir"    value="${PrjHome}/../nms-core-definition" />
+	<property name="nmscoreclient.dir"    value="${PrjHome}/../nms-core-client" />
+	<property name="nmscoreserver.dir"    value="${PrjHome}/../nms-core-server" />
+	<property name="nmscoresbi.dir"    value="${PrjHome}/../nms-core-sbi" />
+	
+	<property name="nmsbizdef.dir"    value="${PrjHome}/../nms-biz-definition" />
+	<property name="nmsbizclient.dir"    value="${PrjHome}/../nms-biz-client" />
+	<property name="nmsbizserver.dir"    value="${PrjHome}/../nms-biz-server" />
+	<property name="nmsbizsbi.dir"    value="${PrjHome}/../nms-biz-sbi" />
+	
+	<property name="test.dir"    value="${PrjHome}/../test" />
+	<property name="testclient.dir"    value="${PrjHome}/../test-client" />
+	
+	<target name="all" >
+		<subant target="deploy">
+				<filelist dir=".">
+					<file name="${toolboxlog.dir}/build-toolbox-log.xml"/>
+					<file name="${bootstrap.dir}/build-bootstrap.xml"/>
+					<file name="${commonbase.dir}/build-commonbase.xml"/>
+					<file name="${commoncore.dir}/build-commoncore.xml"/>
+					<file name="${toolbox.dir}/build-toolbox.xml"/>
+					<file name="${clientcore.dir}/build-clientcore.xml"/>
+					<file name="${servercore.dir}/build-servercore.xml"/>
+					<file name="${nmscoredef.dir}/build-nmscoredefinition.xml"/>
+					<file name="${nmscoreclient.dir}/build-nmscoreclient.xml"/>
+					<file name="${nmscoreserver.dir}/build-nmscoreserver.xml"/>
+					<file name="${nmscoresbi.dir}/build-nmscoresbi.xml"/>
+					
+					<file name="${nmsbizdef.dir}/build-nmsbizdefinition.xml"/>
+					<file name="${nmsbizclient.dir}/build-nmsbizclient.xml"/>
+					<file name="${nmsbizserver.dir}/build-nmsbizserver.xml"/>
+					<file name="${nmsbizsbi.dir}/build-nmsbizsbi.xml"/>
+
+				</filelist>
+			</subant>
+	</target>
+	
+	<target name="generate.runtime">
+		<property name="root.dir" value=".." />
+		<property name="runtime.dir" value="${root.dir}/runtime" />
+		<delete failonerror="false" includeemptydirs="true">
+			<fileset dir="${runtime.dir}" />
+		</delete>
+		<mkdir dir="${runtime.dir}" />
+		<copy todir="${runtime.dir}">
+			<fileset dir="${root.dir}">
+				<include name="bin/**/*" />
+				<include name="bootstrap/**/*" />
+				<include name="joram/**/*" />
+				<include name="modules/**/*" />
+				<exclude name="log/*.log" />
+				<exclude name="**/*svn" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="copy.release.without.svn">
+		<echo>将生成好的版本拷贝到tmp目录,并且不带svn文件</echo>
+		<property name="root.dir" value=".." />
+		<property name="temp.dir" value="${root.dir}/tmp" />
+		<copy todir="${temp.dir}/">
+			<fileset dir="${root.dir}/doc/release/V0.1">
+				<include name="**/*" />
+				<exclude name="**/*svn" />
+			</fileset>
+		</copy>
+	</target>
+	
+</project>

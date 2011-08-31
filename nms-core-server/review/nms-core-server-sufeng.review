@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Review id="nms-core-server">
+    <ReviewIssue id="GGENI69G">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:52:28:468 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:53:04:984 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>sufeng</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="35">src/java/com/yuep/nms/core/server/sm/service/UserServiceImpl.java</File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>放到user包下，要严格按照业务来分包</Summary>
+        <Description>public class UserServiceImpl implements UserService {</Description>
+        <Annotation></Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGENKXXK">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:54:37:640 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-12 :: 13:55:02:078 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>sufeng</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="91">src/java/com/yuep/nms/core/server/sm/facade/SmFacadeImpl.java</File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>请注意，包名已经修改了，没有ycignp这个包了</Summary>
+        <Description>     * @see com.ycignp.veapo.common.interfaces.client.sm.SmFacade#getAccessPoints()</Description>
+        <Annotation></Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+</Review>

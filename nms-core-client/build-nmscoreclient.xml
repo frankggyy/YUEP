@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+
+<project name="nmscoreclient" default="deploy" basedir=".">
+	<property name="PrjHome" value="." />
+
+	<property name="BuildProject" value="yuep-build" />
+	<import file="${PrjHome}/../${BuildProject}/support/properties.xml" />
+
+	<property name="MoCoreClient.pkg" value="moclient.jar" />
+	<property name="MoCoreClientModule" value="mocore-client" />
+	
+	<property name="SmCoreClientModule" value="smcore-client" />
+	<property name="SmCoreClient.pkg" value="smcoreclient.jar" />
+	
+	<property name="SmManagerClientModule" value="smmanager-client" />
+	<property name="SmManagerClient.pkg" value="smmanagerclient.jar" />
+	
+	<property name="SbiManagerClient.pkg" value="sbimanagerclient.jar" />
+	<property name="SbiManagerClientModule" value="sbimanager-client" />
+
+	<property name="dest" value="${PrjHome}/nms-core-client-classes" />
+	<property name="deploy" value="${PrjHome}/lib/${product}" />
+	<property name="NmsCoreClientSrc" value="${PrjHome}/src/java" />
+	<property name="NmsCoreClientResc" value="${PrjHome}/resource" />
+
+	<target name="mkdir">
+		<mkdir dir="${dest}" />
+		<mkdir dir="${deploy}" />
+	</target>
+
+	<target depends="mkdir" name="make">
+		<javac bootclasspathref="project.class.path" encoding="${javac.encoding}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" optimize="${javac.optimize}" deprecation="${javac.deprecation}" nowarn="${javac.nowarn}" source="${javac.source}" target="${javac.target}" listfiles="${javac.listfiles}" fork="${javac.fork}" includeAntRuntime="${javac.includeAntRuntime}" includeJavaRuntime="${javac.includeJavaRuntime}" destdir="${dest}" includes="${nms.core.client.prefix}/**">
+
+			<src path="${NmsCoreClientSrc}" />
+			<compilerarg value="-J-Duser.language=en" />
+		</javac>
+	</target>
+
+	<target name="clean">
+		<delete failonerror="false" includeemptydirs="true">
+			<fileset dir="${deploy}" />
+		</delete>
+		<delete failonerror="false" includeemptydirs="true">
+			<fileset dir="${dest}" />
+		</delete>
+	</target>
+
+	<target name="copy_src_conf_file">
+		<copy todir="${dest}">
+			<fileset dir="${NmsCoreClientSrc}/">
+				<include name="**/*.*" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="jar1package">
+		<jar basedir="${dest}" index="${manifest.index}" duplicate="${manifest.duplicate}" destfile="${deploy}/${jarname}" includes="${nms.core.client.prefix}/${packagename}/**">
+			<manifest>
+				<attribute name="Vendor" value="${manifest.vendor}" />
+				<attribute name="Built-Time" value="${LOCALTIME}" />
+				<attribute name="Version" value="${manifest.version}" />
+				<attribute name="BuildNumber" value="${manifest.buildnumber}" />
+			</manifest>
+		</jar>
+		<condition property="havespringcfg">
+			<isset property="cfgjarname" />
+		</condition>
+		<antcall target="jarspringcfg">
+			<param name="packagename" value="${packagename}" />
+			<param name="cfgjarname" value="${cfgjarname}" />
+		</antcall>
+	</target>
+
+	<target name="jarspringcfg" if="havespringcfg">
+		<jar basedir="${PrjHome}/resource/${packagename}" index="${manifest.index}" duplicate="${manifest.duplicate}" destfile="${deploy}/${cfgjarname}" includes="conf/appctx*.xml">
+			<manifest>
+				<attribute name="Vendor" value="${manifest.vendor}" />
+				<attribute name="Built-Time" value="${LOCALTIME}" />
+				<attribute name="Version" value="${manifest.version}" />
+				<attribute name="BuildNumber" value="${manifest.buildnumber}" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target depends="clean,make,copy_src_conf_file" name="jar">
+		<antcall target="jar1package">
+			<param name="jarname" value="${MoCoreClient.pkg}" />
+			<param name="packagename" value="mocore" />
+		</antcall>
+		<antcall target="jar1package">
+			<param name="jarname" value="${SmCoreClient.pkg}" />
+			<param name="packagename" value="smcore" />
+		</antcall>
+		<antcall target="jar1package">
+			<param name="jarname" value="${SmManagerClient.pkg}" />
+			<param name="packagename" value="smmanager" />
+		</antcall>
+		<antcall target="jar1package">
+			<param name="jarname" value="${SbiManagerClient.pkg}" />
+			<param name="packagename" value="sbimanager" />
+		</antcall>
+	</target>
+
+	<target name="copy_files">
+		
+		<copy tofile="${runenv.dir}/modules/${MoCoreClientModule}/lib/${MoCoreClient.pkg}" file="${deploy}/${MoCoreClient.pkg}" overwrite="true" />
+		<copy todir="${runenv.dir}/modules/${MoCoreClientModule}/conf" overwrite="true">
+			<fileset dir="${NmsCoreClientResc}/mocore/conf">
+				<include name="**/*.*" />
+				<exclude name="**/appctx*.xml" />
+				<exclude name="**/*svn" />
+			</fileset>
+		</copy>
+		
+		<copy tofile="${runenv.dir}/modules/${SbiManagerClientModule}/lib/${SbiManagerClient.pkg}" file="${deploy}/${SbiManagerClient.pkg}" overwrite="true" />
+		<copy todir="${runenv.dir}/modules/${SbiManagerClientModule}/conf" overwrite="true">
+					<fileset dir="${NmsCoreClientResc}/sbimanager/conf">
+						<include name="**/*.*" />
+						<exclude name="**/appctx*.xml" />
+						<exclude name="**/*svn" />
+					</fileset>
+		</copy>
+		
+		<copy tofile="${runenv.dir}/modules/${SmCoreClientModule}/lib/${SmCoreClient.pkg}" file="${deploy}/${SmCoreClient.pkg}" overwrite="true" />
+		<copy todir="${runenv.dir}/modules/${SmCoreClientModule}/conf" overwrite="true">
+			<fileset dir="${NmsCoreClientResc}/smcore/conf">
+				<include name="**/*.*" />
+				<exclude name="**/appctx*.xml" />
+				<exclude name="**/*svn" />
+			</fileset>
+		</copy>
+		<copy tofile="${runenv.dir}/modules/${SmManagerClientModule}/lib/${SmManagerClient.pkg}" file="${deploy}/${SmManagerClient.pkg}" overwrite="true" />
+		<copy todir="${runenv.dir}/modules/${SmManagerClientModule}/conf" overwrite="true">
+			<fileset dir="${NmsCoreClientResc}/smmanager/conf">
+				<include name="**/*.*" />
+				<exclude name="**/appctx*.xml" />
+				<exclude name="**/*svn" />
+			</fileset>
+		</copy>
+
+	</target>
+
+	<target depends="jar,copy_files" name="deploy" />
+
+</project>

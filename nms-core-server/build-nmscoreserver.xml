@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+
+<project name="nmscoreserver" default="deploy" basedir=".">
+	<property name="PrjHome" value="." />
+	<property name="BuildProject" value="yuep-build" />
+	<import file="${PrjHome}/../${BuildProject}/support/properties.xml" />
+
+	<property name="NmsCoreServer.pkg" value="nmscoreserver.jar" />
+	<property name="MoServer.pkg" value="moserver.jar" />
+	<property name="ServerFacade.pkg" value="serverfacade.jar" />
+
+	
+	<property name="MoCoreServer.pkg" value="mocore-server.jar" />
+	<property name="MoCoreServerModule" value="mocore-server" />
+	
+	<property name="MoManagerServer.pkg" value="momanager-server.jar" />
+	<property name="MoManagerServerModule" value="momanager-server" />
+	
+	<property name="NmsManagerServer.pkg" value="nmsmanager-server.jar" />
+	<property name="NmsManagerServerModule" value="nmsmanager-server" />
+	
+	<property name="SmCoreServer.pkg" value="smcore-server.jar" />
+	<property name="SmCoreServerModule" value="smcore-server" />
+	<property name="SmManagerServer.pkg" value="smmanager-server.jar" />
+	<property name="SmManagerServerModule" value="smmanager-server" />
+	
+	<property name="SbiProxyServer.pkg" value="sbiproxy-server.jar" />
+	<property name="SbiProxyServerModule" value="sbiproxy-server" />
+	
+	<property name="SbiManagerServer.pkg" value="sbimanager-server.jar" />
+	<property name="SbiManagerServerModule" value="sbimanager-server" />
+	
+	<property name="NmsProxyServer.pkg" value="nmsproxy-server.jar" />
+	<property name="NmsProxyServerModule" value="nmsproxy-server" />
+	
+	<property name="SubSystemProxyManager.pkg" value="subsystemproxymanager-server.jar" />
+	<property name="SubSystemProxyManagerModule" value="subsystemproxymanager-server" />
+	
+	<property name="SubSystemProxyCore.pkg" value="subsystemproxycore-server.jar" />
+	<property name="SubSystemProxyCoreModule" value="subsystemproxycore-server" />
+	
+	<property name="SyncCoreServer.pkg" value="synccore-server.jar" />
+	<property name="SyncCoreServerModule" value="synccore-server" />
+	
+	<property name="SyncManagerServer.pkg" value="syncmanager-server.jar" />
+	<property name="SyncManagerServerModule" value="syncmanager-server" />
+	
+	
+	<property name="dest" value="${PrjHome}/nms-core-server-classes" />
+	<property name="deploy" value="${PrjHome}/lib/${product}" />
+	<property name="NmsCoreServerSrc" value="${PrjHome}/src/java" />
+
+	<target name="mkdir">
+		<mkdir dir="${dest}" />
+		<mkdir dir="${deploy}" />
+	</target>
+
+	<target depends="mkdir" name="make">
+		<javac bootclasspathref="project.class.path" encoding="${javac.encoding}" 
+				debug="${javac.debug}" debuglevel="${javac.debuglevel}" 
+				optimize="${javac.optimize}" deprecation="${javac.deprecation}" 
+				nowarn="${javac.nowarn}" source="${javac.source}" 
+				target="${javac.target}" listfiles="${javac.listfiles}" 
+				fork="${javac.fork}" includeAntRuntime="${javac.includeAntRuntime}" 
+				includeJavaRuntime="${javac.includeJavaRuntime}" destdir="${dest}" 
+				includes="${nms.core.server.prefix}/**">
+
+			<src path="${NmsCoreServerSrc}" />
+			<compilerarg value="-J-Duser.language=en" />
+		</javac>
+	</target>
+
+	<target name="clean">
+		<delete failonerror="false" includeemptydirs="true">
+			<fileset dir="${deploy}" />
+		</delete>
+		<delete failonerror="false" includeemptydirs="true">
+			<fileset dir="${dest}" />
+		</delete>
+	</target>
+
+	<target name="copy_src_conf_file">
+		<copy todir="${dest}">
+			<fileset dir="${NmsCoreServerSrc}/">
+				<include name="**/*.*" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="jar1package">
+		<jar basedir="${dest}" index="${manifest.index}"
+			duplicate="${manifest.duplicate}" destfile="${deploy}/${jarname}"
+			includes="${nms.core.server.prefix}/${packagename}/**">
+			<manifest>
+				<attribute name="Vendor" value="${manifest.vendor}" />
+				<attribute name="Built-Time" value="${LOCALTIME}" />
+				<attribute name="Version" value="${manifest.version}" />
+				<attribute name="BuildNumber" value="${manifest.buildnumber}" />
+			</manifest>
+		</jar>
+		
+		<condition property="havespringcfg">
+			<isset property="cfgjarname"/> 
+		</condition>
+		<antcall target="jarspringcfg">  
+			<param name="packagename" value="${packagename}" />
+			<param name="cfgjarname" value="${cfgjarname}" />
+		</antcall> 
+	</target>
+	
+	<target name="jarspringcfg" if="havespringcfg">
+		<jar basedir="${PrjHome}/resource/${packagename}" index="${manifest.index}"
+			duplicate="${manifest.duplicate}" destfile="${deploy}/${cfgjarname}"
+			includes="conf/appctx*.xml">
+			<manifest>
+				<attribute name="Vendor" value="${manifest.vendor}" />
+				<attribute name="Built-Time" value="${LOCALTIME}" />
+				<attribute name="Version" value="${manifest.version}" />
+				<attribute name="BuildNumber" value="${manifest.buildnumber}" />
+			</manifest>
+		</jar>	
+	</target>
+
+	<target depends="clean,make,copy_src_conf_file" name="jar">
+		<antcall target="jar1package" >
+			<param name="jarname" value="${MoCoreServer.pkg}" />
+			<param name="packagename" value="mocore" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="jarname" value="${SubSystemProxyManager.pkg}" />
+			<param name="packagename" value="subsystemproxymanager" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="jarname" value="${SubSystemProxyCore.pkg}" />
+			<param name="packagename" value="subsystemproxycore" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="jarname" value="${MoManagerServer.pkg}" />
+			<param name="packagename" value="momanager" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="jarname" value="${NmsManagerServer.pkg}" />
+			<param name="packagename" value="nmsmanager" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="jarname" value="${SmCoreServer.pkg}" />
+			<param name="packagename" value="smcore" />
+			<param name="cfgjarname" value="smcoreservercfg.jar" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="jarname" value="${SyncCoreServer.pkg}" />
+			<param name="packagename" value="synccore" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="jarname" value="${SyncManagerServer.pkg}" />
+			<param name="packagename" value="syncmanager" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="jarname" value="${SmManagerServer.pkg}" />
+			<param name="packagename" value="smmanager" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="jarname" value="${SbiProxyServer.pkg}" />
+			<param name="packagename" value="sbiproxy" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="jarname" value="${SbiManagerServer.pkg}" />
+			<param name="packagename" value="sbimanager" />
+		</antcall>
+		<antcall target="jar1package" >
+			<param name="jarname" value="${NmsProxyServer.pkg}" />
+			<param name="packagename" value="nmsproxy" />
+		</antcall>
+	</target>
+
+	<target name="copy_files">
+
+		<copy tofile="${runenv.dir}/modules/${SmCoreServerModule}/lib/${SmCoreServer.pkg}" file="${deploy}/${SmCoreServer.pkg}" overwrite="true"/>
+		<copy tofile="${runenv.dir}/modules/${SmCoreServerModule}/lib/smcoreservercfg.jar" file="${deploy}/smcoreservercfg.jar" overwrite="true"/>
+		<copy todir="${runenv.dir}/modules/${SmCoreServerModule}/conf" overwrite="true">
+			<fileset dir="${PrjHome}/resource/smcore/conf">
+				<include name="**/*.xml" />
+				<exclude name="**/appctx*.xml" />
+			</fileset>
+		</copy>
+		<copy tofile="${runenv.dir}/modules/${SmManagerServerModule}/lib/${SmManagerServer.pkg}" file="${deploy}/${SmManagerServer.pkg}" overwrite="true"/>
+		
+		<copy tofile="${runenv.dir}/modules/${MoCoreServerModule}/lib/${MoCoreServer.pkg}" file="${deploy}/${MoCoreServer.pkg}" overwrite="true"/>
+		<!--copy tofile="${runenv.dir}/modules/${MoCoreServerModule}/lib/mocoreservercfg.jar" file="${deploy}/mocoreservercfg.jar" overwrite="true"/-->
+		<copy todir="${runenv.dir}/modules/${MoCoreServerModule}/conf" overwrite="true">
+			<fileset dir="${PrjHome}/resource/mocore">
+				<include name="**/*.xml" />
+				<exclude name="**/appctx*.xml" />
+			</fileset>
+		</copy>
+		
+		<copy tofile="${runenv.dir}/modules/${SubSystemProxyManagerModule}/lib/${SubSystemProxyManager.pkg}" file="${deploy}/${SubSystemProxyManager.pkg}" overwrite="true"/>
+		<copy tofile="${runenv.dir}/modules/${SubSystemProxyCoreModule}/lib/${SubSystemProxyCore.pkg}" file="${deploy}/${SubSystemProxyCore.pkg}" overwrite="true"/>
+		
+		<copy tofile="${runenv.dir}/modules/${MoManagerServerModule}/lib/${MoManagerServer.pkg}" file="${deploy}/${MoManagerServer.pkg}" overwrite="true"/>
+		<copy tofile="${runenv.dir}/modules/${NmsManagerServerModule}/lib/${NmsManagerServer.pkg}" file="${deploy}/${NmsManagerServer.pkg}" overwrite="true"/>
+		
+		<copy tofile="${runenv.dir}/modules/${SbiProxyServerModule}/lib/${SbiProxyServer.pkg}" file="${deploy}/${SbiProxyServer.pkg}" overwrite="true"/>
+		<copy todir="${runenv.dir}/modules/${SbiProxyServerModule}/conf" overwrite="true">
+			<fileset dir="${PrjHome}/resource/sbiproxy/conf">
+				<include name="**/*.xml" />
+				<exclude name="**/appctx*.xml" />
+			</fileset>
+		</copy>
+		<copy tofile="${runenv.dir}/modules/${NmsProxyServerModule}/lib/${NmsProxyServer.pkg}" file="${deploy}/${NmsProxyServer.pkg}" overwrite="true"/>
+		<copy todir="${runenv.dir}/modules/${NmsProxyServerModule}/conf" overwrite="true">
+			<fileset dir="${PrjHome}/resource/nmsproxy/conf">
+				<include name="**/*.xml" />
+				<exclude name="**/appctx*.xml" />
+			</fileset>
+		</copy>
+		<copy tofile="${runenv.dir}/modules/${SbiManagerServerModule}/lib/${SbiManagerServer.pkg}" file="${deploy}/${SbiManagerServer.pkg}" overwrite="true"/>
+		
+		<copy tofile="${runenv.dir}/modules/${SyncCoreServerModule}/lib/${SyncCoreServer.pkg}" file="${deploy}/${SyncCoreServer.pkg}" overwrite="true"/>
+		<copy todir="${runenv.dir}/modules/${SyncCoreServerModule}/conf" overwrite="true">
+			<fileset dir="${PrjHome}/resource/synccore/conf">
+				<include name="**/*.xml" />
+				<exclude name="**/appctx*.xml" />
+			</fileset>
+		</copy>
+		
+		<copy tofile="${runenv.dir}/modules/${SyncManagerServerModule}/lib/${SyncManagerServer.pkg}" file="${deploy}/${SyncManagerServer.pkg}" overwrite="true"/>
+		<copy todir="${runenv.dir}/modules/${SyncManagerServerModule}/conf" overwrite="true">
+			<fileset dir="${PrjHome}/resource/syncmanager/conf">
+				<include name="**/*.xml" />
+				<exclude name="**/appctx*.xml" />
+			</fileset>
+		</copy>
+		
+		
+	</target>
+
+	<target depends="jar,copy_files" name="deploy" />
+
+</project>

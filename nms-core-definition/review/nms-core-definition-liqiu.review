@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Review id="nms-core-definition">
+    <ReviewIssue id="GGIPZ082">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 10:12:37:730 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 11:43:26:765 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>liqiu</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="37">src/java/com/yuep/nms/core/common/sm/bo/log/Log.java</File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>类名需要修改，很容易与调试日志的log混淆</Summary>
+        <Description>Log</Description>
+        <Annotation>这个已经改成OperationLog了</Annotation>
+        <Revision></Revision>
+        <Resolution>item.resolution.label.validDuplicate</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGIQ6BO0">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 10:18:19:152 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 12:52:45:328 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>liqiu</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="65">src/java/com/yuep/nms/core/common/sm/interfaces/UserService.java</File>
+        <Type>item.type.label.programLogic</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>这三个接口应该可以统一成一个接口</Summary>
+        <Description>/**
+     * 用户修改自己的密码
+     * 
+     * @param userName
+     * @param oldPassword 编码后的旧密码
+     * @param newPassword 编码后的新密码
+     */
+    public void updateUserPassword(String userName, String oldPassword, String newPassword);
+    
+    /**
+     * 管理员重置用户的密码
+     * 
+     * @param userName
+     * @param newPassword 编码后的新密码
+     */
+    public void resetUserPassword(String userName,String newPassword);
+    
+    /**
+     * 更新用户信息
+     * 
+     * @param updatedUser
+     */
+    public void updateUser(User updatedUser);</Description>
+        <Annotation></Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGIQ7D80">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 10:19:07:824 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 13:01:26:718 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>liqiu</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="49">src/java/com/yuep/nms/core/common/sm/interfaces/UserService.java</File>
+        <Type>item.type.label.programLogic</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>这两个接口可以统一成一个接口</Summary>
+        <Description>/**
+     * 禁用用户帐号, 用户状态将从活动状态转化成禁用状态, 帐户禁用
+     * 后, 用户将不允许通过此帐户进行登录.&lt;p&gt;
+     * 
+     * @param user
+     */
+    public void disableUser(User user);
+     
+    /**
+     * 激活用户帐号, 用户状态将从禁用状态转化成活动状态, 只有处于激活状态的用户帐
+     * 号才被允许登录
+     * 
+     * @param user
+     */
+    public void enableUser(User user);</Description>
+        <Annotation></Annotation>
+        <Revision></Revision>
+        <Resolution>item.resolution.label.unsureValidity</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGIQFM6L">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 10:25:32:685 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 11:44:44:312 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>liqiu</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="39">src/java/com/yuep/nms/core/common/sm/interfaces/UserService.java</File>
+        <Type>item.type.label.suggestion</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>这个方法什么时候使用？</Summary>
+        <Description>public User getUser(String username);</Description>
+        <Annotation>这个在SM MODULE初始化的时候有用</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGIQHTG3">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 10:27:15:411 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 11:36:07:156 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>liqiu</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="104">src/java/com/yuep/nms/core/common/sm/interfaces/UserService.java</File>
+        <Type>item.type.label.programLogic</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>重复定义的方法太多</Summary>
+        <Description>/**
+     * 得到所有用户
+     * 
+     * @return
+     */
+    public List&lt;User&gt; getAllUsers();
+    
+    /**
+     * 创建角色
+     * 
+     * @param role
+     * @return
+     */
+    public void createRole(Role role);
+    
+    public Role getRole(String rolename);
+    
+    /**
+     * 得到所有的角色
+     * 
+     * @return 符合条件的角色
+     */
+    public List&lt;Role&gt; getAllRoles();
+    
+    /**
+     * 修改用户组信息
+     * 
+     * @param updatedRole 更新后的用户组 roleName不能修改
+     */
+    public void updateRole(Role updatedRole);
+    
+    /**
+     * 删除角色
+     * 
+     * @param roleName
+     */
+    public void deleteRole(String roleName);
+    
+    /**
+     * 删除角色
+     * 
+     * @param role
+     */
+    public void deleteRole(Role role);</Description>
+        <Annotation></Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGIQIZZH">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 10:28:10:541 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 10:29:05:453 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>liqiu</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="91">src/java/com/yuep/nms/core/common/sm/interfaces/SmService.java</File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>像这种接口是可以统一成一个接口的，其它类似问题请一并修改</Summary>
+        <Description> /**
+     * 更新权限集信息
+     * 
+     * @param permissionGroup 新建的权限集
+     */
+    public void updatePriviledgeGroup(Group permissionGroup);
+    
+    public void updateGroups(List&lt;Group&gt; groups);</Description>
+        <Annotation></Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGIR2JI9">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 10:43:22:305 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 11:35:29:921 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>liqiu</ReviewerId>
+        <AssignedTo></AssignedTo>
+        <File line="32">src/java/com/yuep/nms/core/common/sm/bo/Module.java</File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>这个类与模块管理的接口名字重复，没看到对这个类的使用，何时使用</Summary>
+        <Description>public class Module extends Bo {</Description>
+        <Annotation>Module这个类在解析module-permission-data.xml配置文件的时候有用， 现在已经移动到nms-core-server工程下</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGIR8EGF">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 10:47:55:695 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 11:29:51:625 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>liqiu</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="36">src/java/com/yuep/nms/core/common/sm/bo/Label.java</File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.severity.label.normal</Severity>
+        <Summary>分包不够明确，这个类只有object下使用，为什么放到object包外面？</Summary>
+        <Description>Label</Description>
+        <Annotation>这个接口也没有了</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGIRA5RS">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 10:49:17:752 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 11:29:10:203 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>liqiu</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="55">src/java/com/yuep/nms/core/common/sm/bo/object/TargetObject.java</File>
+        <Type>item.type.label.suggestion</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>没看到这个类的用途，感觉是缓存管理对象的，如果是缓存管理对象的好像不需要</Summary>
+        <Description>public class TargetObject extends Bo implements TargetResourceObject {</Description>
+        <Annotation>这个接口已经不存在了</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGITUHWC">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 12:01:05:820 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 11:28:39:453 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>liqiu</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="32">src/java/com/yuep/nms/core/common/sm/interfaces/UserLoginData.java</File>
+        <Type>item.type.label.programLogic</Type>
+        <Severity>item.severity.label.critical</Severity>
+        <Summary>interface包中怎么出现一个对象</Summary>
+        <Description>public class UserLoginData extends AbstractAuthenticationToken implements Serializable {</Description>
+        <Annotation>这个最初是要随接口一起发布的， 是接口的一部分。 现在已把它放到comm包里边去了</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGITVWJW">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 12:02:11:468 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 10:22:31:343 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>liqiu</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="24">src/java/com/yuep/nms/core/common/sm/bo/Certificate.java</File>
+        <Type>item.type.label.usability</Type>
+        <Severity>item.label.unset</Severity>
+        <Summary>Certificate与Principal区别是什么？</Summary>
+        <Description>Certificate</Description>
+        <Annotation>Certificate  这个 已经不需要了 </Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGITYGVK">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 12:04:11:120 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 11:23:41:015 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>liqiu</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="28">src/java/com/yuep/nms/core/common/sm/bo/ClientActionItem.java</File>
+        <Type>item.type.label.programLogic</Type>
+        <Severity>item.severity.label.major</Severity>
+        <Summary>这个类没有定义必要。</Summary>
+        <Description>public class ClientActionItem extends Bo {</Description>
+        <Annotation>这个我没有用， 也不知道用做什么。 这个最初是苏总加的。 我现在暂时给删掉了</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+    <ReviewIssue id="GGIU0U5Q">
+        <ReviewIssueMeta>
+            <CreationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-15 :: 12:06:01:646 CST</CreationDate>
+            <LastModificationDate format="yyyy-MM-dd :: HH:mm:ss:SSS z">2010-11-22 :: 11:21:51:484 CST</LastModificationDate>
+        </ReviewIssueMeta>
+        <ReviewerId>liqiu</ReviewerId>
+        <AssignedTo>luoxiaoyong</AssignedTo>
+        <File line="40">src/java/com/yuep/nms/core/common/sm/bo/object/Domain.java</File>
+        <Type>item.type.label.codingStandards</Type>
+        <Severity>item.label.unset</Severity>
+        <Summary>这个类应该也没有必要定义，object包下面的这三个类都没有必要存在</Summary>
+        <Description>public class Domain implements Serializable {</Description>
+        <Annotation>Domain更名为ManagedScope， 这个是对管理范围的定义。</Annotation>
+        <Revision></Revision>
+        <Resolution>item.label.unset</Resolution>
+        <Status>item.status.label.open</Status>
+    </ReviewIssue>
+</Review>

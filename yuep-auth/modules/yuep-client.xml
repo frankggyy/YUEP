@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <system-param>
+    </system-param>
+
+    <modules>
+        <module name="clientcore" moduleClass="com.yuep.core.client.main.ClientCoreModule"
+            publicJars="yuep/commonbase.jar,yuep/commoncore.jar,logback,spring,castor,jms,joram,quartz">
+            <property name="configLocations" value="classpath*:conf/appctx-clientcore.xml" />
+        </module>
+
+        <module name="moduleA-api" moduleClass="com.whnec.yuep.cases.module.APIModuleA"
+            depends="clientcore" />
+        <module name="moduleD" moduleClass="com.whnec.yuep.cases.module.ModuleD"
+            depends="moduleA-api" />
+    </modules>
+</config>

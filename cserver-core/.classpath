@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="src" path="src/test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/common-base"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/common-core"/>
+	<classpathentry exported="true" kind="lib" path="lib/dbunit/dbunit-2.4.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/c3p0/c3p0-0.9.0.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/mysql/mysql-connector-java-5.0.0-beta-bin.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hibernate/ehcache-1.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hibernate/ejb3-persistence.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hibernate/hibernate-annotations.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hibernate/hibernate-commons-annotations.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hibernate/hibernate-entitymanager.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hibernate/hibernate-validator.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/hibernate/hibernate3.jar"/>
+	<classpathentry kind="lib" path="lib/joram/JCup.jar"/>
+	<classpathentry kind="lib" path="lib/joram/jmxri.jar"/>
+	<classpathentry kind="lib" path="lib/joram/joram-client.jar"/>
+	<classpathentry kind="lib" path="lib/joram/joram-shared.jar"/>
+	<classpathentry kind="lib" path="lib/joram/ow_monolog.jar"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="moduleC" basedir="." default="all">
+    <import file="../../common.xml" />
+    <property name="dir.moduleA-api" value="../moduleA-api" />
+
+    <path id="classpath">
+        <path refid="cp.container" />
+        <path refid="cp.common" />
+        <fileset dir="${dir.moduleA-api}/lib" includes="**/*.jar" />
+    </path>
+
+    <target name="compile">
+        <module-javac />
+    </target>
+
+    <target name="jar" depends="compile">
+        <property name="api-excludes"
+                  value="com/whnec/yuep/cases/module/**,com/whnec/yuep/cases/service/impl/**" />
+        <!--module-api-jar excludes="${api-excludes}" /-->
+        <module-jar includes="${api-excludes}" />
+    </target>
+
+    <target name="all" depends="clean,jar" />
+
+</project>

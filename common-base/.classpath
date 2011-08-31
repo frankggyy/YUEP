@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="src" path="src/test"/>
+	<classpathentry kind="src" path="src/sample"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="lib/jdom/jdom-1.0beta9.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jakarta-commons/commons-beanutils-1.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jakarta-commons/commons-collections-3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jakarta-commons/commons-io-1.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jakarta-commons/commons-lang-2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jakarta-commons/commons-logging-1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jakarta-commons/commons-net-1.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jakarta-commons/commons-pool-1.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/castor/castor-1.2-xml-schema.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/castor/castor-1.2-xml.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/castor/castor-1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/castor/xercesImpl.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/quartz/quartz-all-1.6.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/spring/spring-2.5.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/dom4j/dom4j-1.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/javassist/javassist.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/antlr/antlr-2.7.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/easymock/easymock-2.5.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/easymock/easymockclassextension-2.5.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/spring/spring-test.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/junit/junit-4.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/adventnet/AdventNetSnmp.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/adventnet/SNMPDebugger.jar"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>

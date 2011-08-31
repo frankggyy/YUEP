@@ -1,0 +1,111 @@
+<project name="BuildProperties" basedir=".">
+	
+	<property name="PrjHome" value=".." />
+	<property name="BuildProject" value="yuep-build" />
+	<property name="runenv.dir" value="${PrjHome}/../${BuildProject}" />
+	<property name="product" value="yuep" />
+	
+	<property name="client.runenv.dir" value="${runenv.dir}/client" />
+	<property name="server.runenv.dir" value="${runenv.dir}/server" />
+	<property name="sbi.runenv.dir" value="${runenv.dir}/sbi" />
+	<property name="nbi.runenv.dir" value="${runenv.dir}/nbi" />
+	<property name="lct.runenv.dir" value="${runenv.dir}/lct" />
+
+	<!-- jar path -->
+	<property name="ToolboxLog.SupportLib.home" value="${PrjHome}/../toolbox-log/lib" />
+	<property name="Bootstrap.SupportLib.home" value="${PrjHome}/../bootstrap/lib" />
+	<property name="CommonBase.SupportLib.home" value="${PrjHome}/../common-base/lib" />
+	
+	<property name="CommonCore.SupportLib.home" value="${PrjHome}/../common-core/lib" />
+	<property name="Toolbox.SupportLib.home" value="${PrjHome}/../toolbox-module/lib" />
+	
+	<property name="ClientCore.SupportLib.home" value="${PrjHome}/../client-core/lib" />
+	<property name="ServerCore.SupportLib.home" value="${PrjHome}/../cserver-core/lib" />
+	<property name="SbiCore.SupportLib.home" value="${PrjHome}/../nms-core-sbi/lib" />
+	
+	<property name="NmsCoreDef.SupportLib.home" value="${PrjHome}/../nms-core-definition/lib" />
+	<property name="NmsCoreClient.SupportLib.home" value="${PrjHome}/../nms-core-client/lib" />
+	<property name="NmsBizDef.SupportLib.home" value="${PrjHome}/../nms-biz-definition/lib" />
+	
+	<!-- java compile -->
+	<property environment="env" />
+	<property name="javac.encoding" value="GBK" />
+	<property name="javac.debug" value="true" />
+	<property name="javac.debuglevel" value="lines,vars,source" />
+	<property name="javac.optimize" value="off" />
+	<property name="javac.deprecation" value="off" />
+	<property name="javac.nowarn" value="false" />
+	<property name="javac.source" value="1.6" />
+	<property name="javac.target" value="1.6" />
+	<property name="javac.listfiles" value="yes" />
+	<property name="javac.fork" value="yes" />
+	<property name="javac.includeAntRuntime" value="yes" />
+	<property name="javac.includeJavaRuntime" value="yes" />
+	<property name="jdk.home" value="${env.JAVA_HOME}" />
+
+	<!-- java package -->
+	<property name="framework.prefix" value="com/${product}" />
+	<property name="common.base.prefix" value="${framework.prefix}/base" />
+	<property name="common.core.prefix" value="${framework.prefix}/core" />
+	<property name="client.core.prefix" value="${common.core.prefix}/client" />
+	<property name="server.core.prefix" value="${common.core.prefix}" />
+	
+	<property name="nms.core.prefix" value="${framework.prefix}/nms/core" />
+	<property name="nms.core.def.prefix" value="${nms.core.prefix}/common" /> 
+	<property name="nms.core.server.prefix" value="${nms.core.prefix}/server" /> 
+	<property name="nms.core.sbi.prefix" value="${nms.core.prefix}/sbi" />  
+	<property name="nms.core.client.prefix" value="${nms.core.prefix}/client" />
+	
+	<property name="nms.biz.prefix" value="${framework.prefix}/nms/biz" />
+	<property name="nms.biz.def.prefix" value="${nms.biz.prefix}/common" />
+	<property name="nms.biz.server.prefix" value="${nms.biz.prefix}/server" />
+	<property name="nms.biz.sbi.prefix" value="${nms.biz.prefix}/sbi" />
+	<property name="nms.biz.client.prefix" value="${nms.biz.prefix}/client" />
+	
+	<!-- jar parameter -->
+	<property name="manifest.index" value="true" />
+	<property name="manifest.duplicate" value="fail" />
+	<property name="manifest.vendor" value="www.ycig.com" />
+	<property name="manifest.version" value="V1.0" />
+	<property name="manifest.buildnumber" value="345" />
+	<tstamp description="Time stamp of current time">
+		<format property="LOCALTIME" pattern="MM/dd/yyyy hh:mm aa" unit="hour" locale="en" />
+	</tstamp>
+
+	<path id="project.class.path">
+		<fileset dir="${ToolboxLog.SupportLib.home}/">
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${Bootstrap.SupportLib.home}/">
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${CommonBase.SupportLib.home}/">
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${CommonCore.SupportLib.home}/">
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${Toolbox.SupportLib.home}/">
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${ClientCore.SupportLib.home}/">
+				<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${ServerCore.SupportLib.home}/">
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${SbiCore.SupportLib.home}/">
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${NmsCoreDef.SupportLib.home}/">
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${NmsCoreClient.SupportLib.home}/">
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${NmsBizDef.SupportLib.home}/">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+	
+</project>
